@@ -16,7 +16,7 @@ function DrawingTool() {
     <div className="w-full flex justify-center">
       <div className="rounded bg-white flex gap-2 p-2">
         {icons.map(({ icon, label }, index) => (
-          <div key={index} className="rounded hover:bg-blue-300 hover:text-white h-8 w-8 flex items-center justify-center" title={label}>
+          <div key={index} className="rounded hover:bg-blue-400 hover:text-white h-8 w-8 flex items-center justify-center" title={label}>
             <FontAwesomeIcon icon={icon} size="lg" />
           </div>
         ))}
