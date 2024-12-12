@@ -14,8 +14,8 @@ function ChatBox() {
           <div>29</div>
         </div>
       </div>
-      <div>
-        <div className="border-b text-sm pb-5 px-4 flex flex-col justify-end gap-2 overflow-y-scroll h-[446px] scrollbar-hide">
+      <div className="overflow-y-auto h-[446px] scrollbar-hide">
+        <div className="text-sm py-5 px-4 flex flex-col justify-end gap-2">
         {Array.from({ length: 8 }).map((_, index) => (
           <div key={index} className="flex gap-2">
             <div className="text-red-500 font-bold">hmyang</div>
@@ -25,11 +25,11 @@ function ChatBox() {
           </div>
         ))}
         </div>
-        <div className="h-16 px-4 flex items-center text-sm">
-          <div className="bg-gray-100 h-10 w-full rounded-lg flex items-center justify-center gap-2">
-            <input className="w-10/12 bg-transparent focus:outline-none" placeholder="채팅 입력"></input>
-            <FontAwesomeIcon icon={faPaperPlane} />
-          </div>
+      </div>
+      <div className="border-t h-16 px-4 flex items-center text-sm">
+        <div className="bg-gray-100 h-10 w-full rounded-lg flex items-center justify-center gap-2">
+          <input className="w-10/12 bg-transparent focus:outline-none" placeholder="채팅 입력"></input>
+          <FontAwesomeIcon icon={faPaperPlane} />
         </div>
       </div>
     </div>
