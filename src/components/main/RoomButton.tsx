@@ -1,13 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-interface RoomButtonProps {
-  label: string;
-}
+function RoomButton({ label }: {label: string}) {
+  const navigate = useNavigate();
 
-function RoomButton({ label }:RoomButtonProps) {
+  const handleClickLiveButton = () => {
+    navigate(`/live`);
+  };
 
   return (
-    <button>{label}</button>
+    <button onClick={handleClickLiveButton} className="border-2 border-blue-400 w-full aspect-[1/1] rounded-xl hover:bg-blue-400 hover:text-white hover:font-semibold">{label}</button>
   );
 }
 
