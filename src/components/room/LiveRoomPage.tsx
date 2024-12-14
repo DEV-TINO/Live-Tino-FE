@@ -12,7 +12,7 @@ function LiveRoomPage() {
         <div></div>
         <div className="relative flex flex-col gap-4">
           <VideoArea />
-          <div className="absolute top-1 w-full">
+          <div className="absolute top-2 w-full">
             <ToolBox />
           </div>
           <DrawingTool />
