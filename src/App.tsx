@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from "./components/main/MainPage";
 import LiveRoomPage from "./components/room/LiveRoomPage";
 import Header from "./components/Header";
+import PlayPage from "./components/mypage/PlayPage";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="live" element={<LiveRoomPage />} />
+        <Route path="/video" element={<PlayPage />} />
       </Routes>
     </BrowserRouter>
   );
