@@ -9,7 +9,7 @@ function RoomButton({ label }: {label: string}) {
   };
 
   return (
-    <button onClick={handleClickLiveButton} className="border-2 border-blue-400 w-full aspect-[1/1] rounded-xl hover:bg-blue-400 hover:text-white hover:font-semibold">{label}</button>
+    <button onClick={handleClickLiveButton} className="border-2 border-blue-600 w-full aspect-[1/1] rounded-xl hover:bg-blue-600 hover:text-white hover:font-semibold">{label}</button>
   );
 }
 
