@@ -16,11 +16,24 @@ function DrawingTool() {
       <div className="flex flex-col xl:flex-row gap-2 xl:gap-6 w-full items-center">
         <div className="flex flex-col gap-2 w-full max-w-64">
           <div>굵기</div>
-          <div className="bg-gray-200 rounded w-full h-12"></div>
+          <div className="bg-gray-100 rounded w-full h-12 flex justify-between p-4 items-center">
+            {Array.from({ length: 5 }).map((_, index) => {
+              const size = (index + 1) * 4;
+              return (
+                <div key={index} className="w-8 h-8 border border-gray-300 rounded-full flex items-center justify-center">
+                  <div className="bg-gray-300 rounded-full" style={{ width: size, height: size }}></div>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className="flex flex-col gap-2 w-full max-w-64">
           <div>투명도</div>
-          <div className="bg-gray-200 rounded w-full h-12"></div>
+          <div className="bg-gray-100 rounded w-full h-12 flex items-center gap-2 p-4 justify-center">
+            <div className="min-w-8 h-8 border border-gray-300 rounded-full"></div>
+            <input type="range" min="0" max="100" className="w-full h-1.5 appearance-none bg-gray-300 rounded-full accent-gray-400"></input>
+            <div className="min-w-8 h-8 border border-gray-300 rounded-full bg-gray-300"></div>
+          </div>
         </div>
       </div>
       <div></div>
