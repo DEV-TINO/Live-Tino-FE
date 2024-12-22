@@ -7,10 +7,16 @@ function VideoTabel() {
   const videoData = [
     { title: "ㄴㄴ", date: "24.11.13" },
     { title: "오늘은 캐치마인드", date: "24.11.14" },
+    { title: "ㄴㄴ", date: "24.11.13" },
+    { title: "오늘은 캐치마인드", date: "24.11.14" },
+    { title: "ㄴㄴ", date: "24.11.13" },
+    { title: "오늘은 캐치마인드", date: "24.11.14" },
+    { title: "ㄴㄴ", date: "24.11.13" },
+    { title: "오늘은 캐치마인드", date: "24.11.14" },
   ];
 
   return (
-    <div className="relative overflow-x-auto border-gray-300 border rounded-lg">
+    <div className="relative overflow-y-auto h-[558px] border-gray-300 border rounded-lg scrollbar-hide">
       <table className="w-full text-left text-gray-500">
         <thead className="text-gray-700 bg-gray-50">
           <tr>
