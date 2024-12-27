@@ -1,58 +1,34 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 
 function VideoTabel() {
 
   const videoData = [
-    { title: "ㄴㄴ", date: "24.11.13" },
-    { title: "오늘은 캐치마인드", date: "24.11.14" },
-    { title: "ㄴㄴ", date: "24.11.13" },
-    { title: "오늘은 캐치마인드", date: "24.11.14" },
-    { title: "ㄴㄴ", date: "24.11.13" },
-    { title: "오늘은 캐치마인드", date: "24.11.14" },
-    { title: "ㄴㄴ", date: "24.11.13" },
-    { title: "오늘은 캐치마인드", date: "24.11.14" },
+    { title: "그림 맞추기 하자", date: "24.11.12", duration: "00:27:12" },
+    { title: "ㄴㄴ", date: "24.11.13", duration: "00:30:45" },
+    { title: "오늘은 캐치마인드", date: "24.11.14", duration: "00:25:38" },
+    { title: "그림 맞추기 하자", date: "24.11.12", duration: "00:27:12" },
+    { title: "ㄴㄴ", date: "24.11.13", duration: "00:30:45" },
+    { title: "오늘은 캐치마인드", date: "24.11.14", duration: "00:25:38" },
   ];
 
-  return (
-    <div className="relative overflow-y-auto h-[558px] border-gray-300 border rounded-lg scrollbar-hide">
-      <table className="w-full text-left text-gray-500">
-        <thead className="text-gray-700 bg-gray-50">
-          <tr>
-            <th scope="col" className="px-6 py-3">
-              제목
-            </th>
-            <th scope="col" className="px-6 py-3 w-24"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <th scope="row" className="px-6 py-4 text-red-500 whitespace-nowrap">
-              그림 맞추기 하자
-            </th>
-            <td className="px-6 py-4 flex flex-col justify-end place-items-end text-red-500">
-              <button>
-                <FontAwesomeIcon icon={faPlay} size="lg" />
-              </button>
-              <div className="col-span-2 pt-2">24.11.12</div>
-            </td>
-          </tr>
-          {videoData.map((video, index) => (
-            <tr key={index} className="bg-white border-b hover:bg-gray-50">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                {video.title}
-              </th>
-              <td className="px-6 py-4 flex flex-col justify-end place-items-end">
-                <button>
-                  <FontAwesomeIcon icon={faPlay} size="lg" />
-                </button>
-                <div className="col-span-2 pt-2">{video.date}</div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+  return ( 
+    <div className="flex flex-col gap-3 w-full">
+      {videoData.map((video, index) => (
+        <div key={index} className="flex w-full">
+          <div className="relative min-w-36 aspect-[16/9] bg-gray-200 rounded-md cursor-pointer">
+            <div className="absolute bottom-2 right-2 bg-neutral-950 bg-opacity-50 text-white text-xs px-1 py-0.5 rounded">{video.duration}</div>
+          </div>
+          <div className="px-2 w-full">
+            <div className="flex justify-between items-center">
+              <div className="">{video.title}</div>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </div>
+            <div className="text-sm text-gray-700">{video.date}</div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

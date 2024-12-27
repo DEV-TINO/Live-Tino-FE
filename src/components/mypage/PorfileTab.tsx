@@ -9,7 +9,7 @@ function ProfileTab() {
         <div>님</div>
       </div>
       <div className="p-1">idydy</div>
-      <button className="mt-4 rounded-lg p-2 bg-blue-600 hover:bg-blue-800 text-white">프로필 변경</button>
+      <button className="mt-4 rounded-md p-2 bg-blue-600 hover:bg-blue-800 text-white">프로필 변경</button>
     </div>
   );
 }
