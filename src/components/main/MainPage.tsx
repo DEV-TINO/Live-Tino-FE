@@ -39,11 +39,8 @@ function MainPage() {
             </button>
           </div>
         </div>
-        <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-          <img
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
-            alt="mockup"
-          />
+        <div className="hidden pl-16 lg:mt-0 lg:col-span-5 lg:flex">
+          <img className="h-[300px] xl:h-[350px] w-auto" src="/tino.svg" />
         </div>
       </div>
     </section>
