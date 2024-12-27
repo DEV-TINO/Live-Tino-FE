@@ -19,7 +19,7 @@ function LoginPage() {
       <div className="w-80">
         <LoginTab />
       </div>
-      <div className="flex gap-2 items-center text-gray-900 text-sm">
+      <div className="flex gap-2 items-center text-gray-900 text-sm min-w-60">
         <button>아이디 찾기</button>
         <div className="w-0 h-3 border-l border-gray-900"></div>
         <button>비밀번호 찾기</button>
