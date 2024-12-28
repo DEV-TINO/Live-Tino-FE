@@ -24,13 +24,17 @@ function Header() {
     openModal("exit");
   };
 
+  const handleClickSetting = () => {
+    openModal("setting");
+  };
+
   return (
     <div className="flex justify-between items-center px-10 w-full h-16">
       <button onClick={handleClickLogo} className="text-3xl font-semibold text-blue-600 min-w-40 text-start">LIVE-TINO</button>
       <div className="flex gap-6">
         {location.pathname === "/live" && (
           <div className="flex gap-6">
-            <button className="min-w-14">Setting</button>
+            <button onClick={handleClickSetting} className="min-w-14">Setting</button>
             <button onClick={handleClickExit} className="min-w-7">Exit</button>
             </div>
         )}

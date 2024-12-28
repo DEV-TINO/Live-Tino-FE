@@ -20,7 +20,7 @@ function VideoTabel() {
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-2 xl:grid-cols-3 gap-4">
       {videoData.map((video, index) => (
         <div key={index} onClick={handleClickPlay} className="flex flex-col mb-3">
           <div className="relative w-full aspect-[16/9] bg-gray-200 rounded-md cursor-pointer">
