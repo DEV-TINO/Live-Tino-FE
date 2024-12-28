@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import PlayPage from "./components/mypage/PlayPage";
 import LoginPage from "./components/login/LoginPage";
 import RegisterPage from "./components/login/RegisterPage";
+import ModalPage from "./components/modals/ModalPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function AppContent() {
 
   return (
     <div>
+      <ModalPage />
       {location.pathname !== "/login" && location.pathname !== "/register" && <Header />}
       <div className="pb-4">
         <Routes>

@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import useBaseModal from "../stores/baseModal";
 
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const isLogin: boolean = false;
+  const { openModal } = useBaseModal();
 
   const handleClickLogo = () => {
     navigate(`/`);
@@ -18,6 +20,10 @@ function Header() {
     navigate(`/login`);
   };
 
+  const handleClickExit = () => {
+    openModal("exit");
+  };
+
   return (
     <div className="flex justify-between items-center px-10 w-full h-16">
       <button onClick={handleClickLogo} className="text-3xl font-semibold text-blue-600 min-w-40 text-start">LIVE-TINO</button>
@@ -25,7 +31,7 @@ function Header() {
         {location.pathname === "/live" && (
           <div className="flex gap-6">
             <button className="min-w-14">Setting</button>
-            <button className="min-w-7">Exit</button>
+            <button onClick={handleClickExit} className="min-w-7">Exit</button>
             </div>
         )}
         {location.pathname !== "/live" && (
