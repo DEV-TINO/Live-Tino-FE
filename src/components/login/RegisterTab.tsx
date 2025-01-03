@@ -45,7 +45,7 @@ function RegisterTab() {
       </div>
       <button type="submit" className="w-full text-white bg-blue-600 hover:bg-blue-800 focus:outline-none font-semibold rounded-md py-2.5">회원가입</button>
       <div className="text-sm flex gap-3">
-        <p className="font-medium text-gray-700">이미 계정이 있으신가요?</p>
+        <p className="font-medium text-gray-600">이미 계정이 있으신가요?</p>
         <button onClick={handleClickLogin} className="font-bold text-blue-600 hover:underline">로그인</button>
       </div>
     </form>
