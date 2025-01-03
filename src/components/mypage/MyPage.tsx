@@ -6,11 +6,11 @@ import Pagination from "./Pagination";
 function MyPage() {
 
   return (
-    <div className="grid grid-cols-[minmax(24px,_1fr)_minmax(100px,150px)_24px_minmax(400px,_3fr)_minmax(24px,_1fr)]">
+    <div className="grid grid-cols-[minmax(24px,_1fr)_minmax(100px,150px)_36px_minmax(400px,_3.5fr)_minmax(24px,_1fr)]">
       <div className="col-start-2 row-start-2">
         <ProfileTab />
       </div>
-      <form className="col-start-4 w-72 ml-auto mb-8 mt-2">   
+      <form className="col-start-4 w-64 ml-auto mb-8 mt-2">   
         <label className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
         <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

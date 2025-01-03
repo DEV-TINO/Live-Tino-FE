@@ -6,7 +6,7 @@ const Pagination = () => {
         <li>
           <a
             href="#"
-            className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
+            className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-md hover:bg-gray-100 hover:text-gray-700"
           >
             <span className="sr-only">Previous</span>
             <svg
@@ -31,7 +31,7 @@ const Pagination = () => {
               href="#"
               className={`flex items-center justify-center px-3 h-8 leading-tight ${
                 page === 3
-                  ? "z-10 text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700"
+                  ? "z-10 text-white border border-blue-600 bg-blue-600 hover:bg-blue-800"
                   : "text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
               }`}
             >
@@ -42,7 +42,7 @@ const Pagination = () => {
         <li>
           <a
             href="#"
-            className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700"
+            className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-md hover:bg-gray-100 hover:text-gray-700"
           >
             <span className="sr-only">Next</span>
             <svg
