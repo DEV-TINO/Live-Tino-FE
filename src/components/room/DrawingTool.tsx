@@ -20,8 +20,8 @@ function DrawingTool() {
             {Array.from({ length: 5 }).map((_, index) => {
               const size = (index + 1) * 4;
               return (
-                <div key={index} className="w-8 h-8 border border-gray-300 hover:border-gray-400 rounded-full flex items-center justify-center">
-                  <div className="bg-gray-300 rounded-full" style={{ width: size, height: size }}></div>
+                <div key={index} className="group w-8 h-8 border border-gray-300 hover:border-gray-400 rounded-full flex items-center justify-center">
+                  <div className="group-hover:bg-gray-400 bg-gray-300 rounded-full" style={{ width: size, height: size }}></div>
                 </div>
               );
             })}
@@ -36,7 +36,6 @@ function DrawingTool() {
           </div>
         </div>
       </div>
-      <div></div>
     </div>
   );
 }
