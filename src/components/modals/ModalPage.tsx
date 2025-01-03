@@ -3,6 +3,7 @@ import useBaseModal from "../../stores/baseModal";
 import ModalBackground from "./ModalBackground"
 import CofirmModal from "../room/CofirmModal";
 import SettingModal from "../room/SettingModal"
+import ProfileModal from "../mypage/ProfileModal";
 
 function ModalPage() {
   const { isModalOpen, modalType } = useBaseModal();
@@ -12,6 +13,7 @@ function ModalPage() {
     <ModalBackground>
       {modalType === "exit" && <CofirmModal />}
       {modalType === "setting" && <SettingModal />}
+      {modalType === "profile" && <ProfileModal />}
     </ModalBackground>
   );
 }
