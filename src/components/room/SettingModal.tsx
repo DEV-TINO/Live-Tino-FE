@@ -1,10 +1,8 @@
 import React from "react";
 import useBaseModal from "../../stores/baseModal";
-import { useNavigate } from "react-router-dom";
 
 function SettingModal() {
   const { closeModal } = useBaseModal();
-  const navigate = useNavigate();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
