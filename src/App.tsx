@@ -9,6 +9,8 @@ import PlayPage from "./components/mypage/PlayPage";
 import LoginPage from "./components/login/LoginPage";
 import RegisterPage from "./components/login/RegisterPage";
 import ModalPage from "./components/modals/ModalPage";
+import PasswordPage from "./components/login/PasswordPage";
+import CheckPage from "./components/login/CheckPage";
 
 function App() {
   return (
@@ -24,7 +26,7 @@ function AppContent() {
   return (
     <div>
       <ModalPage />
-      {location.pathname !== "/login" && location.pathname !== "/register" && <Header />}
+      {location.pathname !== "/login" && location.pathname !== "/register" && location.pathname !== "/password" && location.pathname !== "/check" && <Header />}
       <div className="pb-4">
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -33,6 +35,8 @@ function AppContent() {
           <Route path="/video" element={<PlayPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/password" element={<PasswordPage />} />
+          <Route path="/check" element={<CheckPage />} />
         </Routes>
       </div>
     </div>
