@@ -21,10 +21,6 @@ function PlayPage() {
               <div>영상 길이</div>
               <div className="font-normal">00:25:38</div>
             </div>
-            <div className="text-base flex gap-2">
-              <div>저장 횟수</div>
-              <div className="font-normal">3회</div>
-            </div>
           </div>
         </div>
       </div>
