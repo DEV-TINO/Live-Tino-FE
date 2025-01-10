@@ -1,11 +1,17 @@
 import React from "react";
 import useBaseModal from "../../stores/baseModal";
+import useLiveRoomStore from "../../stores/liveRoomStore";
 
 function SettingModal() {
   const { closeModal } = useBaseModal();
+  const { setMode, mode } = useLiveRoomStore();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+  };
+
+  const handleModeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setMode(e.target.value);
   };
 
   return (
@@ -52,11 +58,14 @@ function SettingModal() {
                   화면 설정
                 </label>
                 <div className="bg-gray-50 outline outline-1 outline-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 focus-within:outline-blue-600 focus-within:outline-2">
-                  <select className="bg-transparent w-full focus:outline-none">
-                    <option selected>선택</option>
+                  <select
+                    value={mode}
+                    onChange={handleModeChange}
+                    className="bg-transparent w-full focus:outline-none"
+                  >
+                    <option value="board">whiteboard</option>
                     <option value="camera">camera</option>
                     <option value="screen">screen share</option>
-                    <option value="board">whiteboard</option>
                   </select>
                 </div>
               </div>
