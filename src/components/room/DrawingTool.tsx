@@ -12,7 +12,7 @@ function DrawingTool() {
   ];
 
   const getColor = (colorOption: string) => {
-    return color === colorOption ? 'border-2 border-gray-950' : '';
+    return color === colorOption ? 'border border-gray-800' : 'border';
   };
 
   const getThicknessBorder = (size: number) => {
@@ -27,7 +27,10 @@ function DrawingTool() {
     <div className="rounded-md border grid grid-cols-[24px_220px_24px_1fr_24px] xl:grid-cols-[12px_340px_12px_1fr_12px] 2xl:grid-cols-[24px_340px_24px_1fr_24px] items-center py-4">
       <div></div>
       <div className="flex flex-col gap-2">
-        <div>Color</div>
+        <div className="flex gap-4 items-center">
+          <div>Color</div>
+          <div className="w-12 h-6 rounded-md border border-gray-800" style={{ backgroundColor: color }}></div>
+        </div>
         <div className="rounded-md grid grid-cols-6 gap-1 xl:grid-cols-12">
           {colors.map((colorOption, index) => (
             <div key={index} className={`h-8 w-8 xl:w-6 xl:h-6 rounded ${getColor(colorOption)}`} style={{ backgroundColor: colorOption }} onClick={() => setColor(colorOption)}></div>
