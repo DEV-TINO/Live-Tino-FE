@@ -4,6 +4,7 @@ import VideoTable from "./VideoTable";
 import Pagination from "./Pagination";
 
 const MyPage = () => {
+  const itemsPerPage = 6;
   return (
     <div className="grid grid-cols-[minmax(24px,_1fr)_minmax(100px,150px)_36px_minmax(400px,_3.5fr)_minmax(24px,_1fr)]">
       <div className="col-start-2 row-start-2">
@@ -31,10 +32,10 @@ const MyPage = () => {
           </button>
         </div>
       </form>
-      <div className="col-start-4 row-start-2 flex flex-col gap-24">
+      <div className="col-start-4 row-start-2 flex h-[520px] justify-between flex-col">
         <VideoTable />
         <div className="w-full flex justify-center">
-          <Pagination />
+          <Pagination itemsPerPage={itemsPerPage} />
         </div>
       </div>
     </div>

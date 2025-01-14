@@ -4,8 +4,10 @@ import PlayVideoTable from "./PlayVideoTable";
 import Pagination from "./Pagination";
 
 const PlayPage = () => {
+  const itemsPerPage = 6;
+
   return (
-    <div className="grid grid-cols-[minmax(24px,_1fr)_minmax(512px,992px)_24px_320px_minmax(24px,_1fr)]">
+    <div className="relative grid grid-cols-[minmax(24px,_1fr)_minmax(512px,992px)_24px_320px_minmax(24px,_1fr)]">
       <div></div>
       <div className="flex flex-col gap-2">
         <VideoArea />
@@ -24,9 +26,9 @@ const PlayPage = () => {
         </div>
       </div>
       <div></div>
-      <div className="flex flex-col gap-8 items-center">
-        <PlayVideoTable />
-        <Pagination />
+      <div className="flex flex-col items-center h-[620px] justify-between">
+        <PlayVideoTable itemsPerPage={itemsPerPage} />
+        <Pagination itemsPerPage={itemsPerPage} />
       </div>
     </div>
   );

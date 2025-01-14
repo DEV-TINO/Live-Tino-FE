@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import React from "react";
 import useBaseModal from "../../stores/baseModal";
 
-const ProfileModal: FC = () => {
+const ProfileModal = () => {
   const { closeModal } = useBaseModal();
 
   const handleModalClick = (e: React.MouseEvent): void => {

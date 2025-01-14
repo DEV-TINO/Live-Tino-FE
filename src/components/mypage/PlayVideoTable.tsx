@@ -1,26 +1,16 @@
-import React, { FC } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import useVideoStore from "../../stores/videoStore";
 
-type TVideo = {
-  title: string;
-  date: string;
-  duration: string;
-};
+const PlayVideoTable = ({ itemsPerPage }: { itemsPerPage: number }) => {
+  const { videos, currentPage } = useVideoStore();
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentVideos = videos.slice(startIndex, startIndex + itemsPerPage);
 
-const videos: TVideo[] = [
-  { title: "그림 맞추기 하자", date: "24.11.12", duration: "00:27:12" },
-  { title: "ㄴㄴ", date: "24.11.13", duration: "00:30:45" },
-  { title: "오늘은 캐치마인드", date: "24.11.14", duration: "00:25:38" },
-  { title: "그림 맞추기 하자", date: "24.11.12", duration: "00:27:12" },
-  { title: "ㄴㄴ", date: "24.11.13", duration: "00:30:45" },
-  { title: "오늘은 캐치마인드", date: "24.11.14", duration: "00:25:38" },
-];
-
-const VideoTable: FC = () => {
   return (
     <div className="flex flex-col gap-3 w-full">
-      {videos.map((video, index) => (
+      {currentVideos.map((video, index) => (
         <div key={index} className="flex w-full">
           <div className="relative min-w-36 aspect-[16/9] bg-gray-200 rounded-md cursor-pointer">
             <div className="absolute bottom-2 right-2 bg-neutral-950 bg-opacity-50 text-white text-xs px-1 py-0.5 rounded">
@@ -40,4 +30,4 @@ const VideoTable: FC = () => {
   );
 };
 
-export default VideoTable;
+export default PlayVideoTable;
