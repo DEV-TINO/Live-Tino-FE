@@ -7,7 +7,6 @@ function DrawingTool() {
   const icons = [
     { icon: faPencil, label: "Pencil" },
     { icon: faEraser, label: "Eraser" },
-    { icon: faFill, label: "Fill" },
     { icon: faArrowLeft, label: "Undo" },
     { icon: faArrowRight, label: "Redo" },
   ];
@@ -19,8 +18,9 @@ function DrawingTool() {
   };
 
   const isEraser = (value: string) => {
-    if(value === "Eraser") setTool(value);
-    else setTool("Pencil")
+    if (value === "Eraser" || value === "Pencil") {
+      setTool(value);
+    }
   };
 
   return (
