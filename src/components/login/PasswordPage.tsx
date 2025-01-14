@@ -1,5 +1,7 @@
-import React, { FC } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -8,19 +10,31 @@ const LoginPage = () => {
     navigate(`/`);
   };
 
+  const handleClickBack = (): void => {
+    navigate('/login');
+  };
+
   const handleClickCheck = (): void => {
     navigate(`/check`);
   };
 
   return (
     <div className="w-screen pt-56 flex flex-col gap-4 items-center">
-      <button 
-        onClick={handleClickLogo} 
-        className="text-3xl font-semibold text-blue-600 mb-8"
-      >
-        LIVE-TINO
-      </button>
-      <form className="w-80 flex flex-col gap-4">
+      <div className="relative w-80">
+        <button 
+          onClick={handleClickBack} 
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 text-gray-400"
+        >
+          <FontAwesomeIcon icon={faChevronLeft} size="lg" />
+        </button>
+        <button 
+          onClick={handleClickLogo} 
+          className="text-3xl font-semibold text-blue-600 w-full text-center"
+        >
+          LIVE-TINO
+        </button>
+      </div>
+      <form className="mt-8 w-80 flex flex-col gap-4">
         <input 
           type="text" 
           id="id" 
