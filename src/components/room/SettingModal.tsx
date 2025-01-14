@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import useBaseModal from "../../stores/baseModal";
 import useLiveRoomStore from "../../stores/liveRoomStore";
 
 const SettingModal = () => {
   const { closeModal } = useBaseModal();
-  const { setMode, mode } = useLiveRoomStore();
+  const { mode, setMode } = useLiveRoomStore();
+
+  const [tempMode, setTempMode] = useState<string>(mode);
 
   const handleModalClick = (e: React.MouseEvent): void => {
     e.stopPropagation();
   };
 
   const handleModeChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-    setMode(e.target.value);
+    setTempMode(e.target.value);
+  };
+
+  const handleConfirm = (): void => {
+    setMode(tempMode);
+    closeModal();
   };
 
   return (
@@ -63,7 +70,7 @@ const SettingModal = () => {
                 </label>
                 <div className="bg-gray-50 outline outline-1 outline-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 focus-within:outline-blue-600 focus-within:outline-2">
                   <select
-                    value={mode}
+                    value={tempMode}
                     onChange={handleModeChange}
                     className="bg-transparent w-full focus:outline-none"
                   >
@@ -94,7 +101,7 @@ const SettingModal = () => {
                 취소
               </button>
               <button
-                onClick={closeModal}
+                onClick={handleConfirm}
                 type="button"
                 className="text-white bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm inline-flex items-center px-5 py-2 text-center"
               >

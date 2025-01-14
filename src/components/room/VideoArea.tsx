@@ -103,8 +103,7 @@ const useMediaStream = () => {
           if (audioRef.current) audioRef.current.srcObject = stream;
         })
         .catch((err) => console.error("Failed to access camera: ", err));
-    }
-    if (mode === "screen") {
+    } else if (mode === "screen") {
       navigator.mediaDevices
         .getDisplayMedia({ video: true, audio: true })
         .then((stream) => {
@@ -112,6 +111,9 @@ const useMediaStream = () => {
           if (audioRef.current) audioRef.current.srcObject = stream;
         })
         .catch((err) => console.error("Failed to access screen share: ", err));
+    } else if (mode === "board") {
+      if (videoRef.current) videoRef.current.srcObject = null;
+      if (audioRef.current) audioRef.current.srcObject = null;
     }
   }, [mode]);
 
@@ -127,7 +129,6 @@ const VideoArea = () => {
   const {
     canvasRef,
     drawPoints,
-    setDrawPoints,
     startDrawing,
     draw,
     stopDrawing,
