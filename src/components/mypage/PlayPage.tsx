@@ -1,10 +1,9 @@
 import React from "react";
 import VideoArea from "./VideoArea";
-import PlayVideoTable from "./PlayVideoTable"
+import PlayVideoTable from "./PlayVideoTable";
 import Pagination from "./Pagination";
 
-function PlayPage() {
-
+const PlayPage = () => {
   return (
     <div className="grid grid-cols-[minmax(24px,_1fr)_minmax(512px,992px)_24px_320px_minmax(24px,_1fr)]">
       <div></div>
@@ -31,6 +30,6 @@ function PlayPage() {
       </div>
     </div>
   );
-}
+};
 
 export default PlayPage;

@@ -1,10 +1,10 @@
 import React from "react";
 import useSelectionModal from "../../stores/selectionModal";
 
-function SelectionModal() {
+const SelectionModal = () => {
   const { closeModal } = useSelectionModal();
 
-  const handleModalClick = (e: React.MouseEvent) => {
+  const handleModalClick = (e: React.MouseEvent): void => {
     e.stopPropagation();
   };
 
@@ -16,7 +16,6 @@ function SelectionModal() {
       </div>
     </div>
   );
-}
-
+};
 
 export default SelectionModal;

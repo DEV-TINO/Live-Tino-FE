@@ -1,12 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import useSelectionModal from "../../stores/selectionModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import SelectionModal from "./SelectionModal";
 
-function VideoArea() {
+const VideoArea = () => {
   const { openModal, isModalOpen } = useSelectionModal();
-  const [value, setValue] = useState(0);
 
   return (
     <div className="relative group">
@@ -18,6 +17,6 @@ function VideoArea() {
       <div className="bg-gray-200 aspect-[16/9]"></div>
     </div>
   );
-}
+};
 
 export default VideoArea;

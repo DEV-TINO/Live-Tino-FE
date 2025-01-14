@@ -1,5 +1,5 @@
 import "./index.css";
-import './App.css';
+import "./App.css";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import MainPage from "./components/main/MainPage";
 import LiveRoomPage from "./components/room/LiveRoomPage";
@@ -12,21 +12,24 @@ import ModalPage from "./components/modals/ModalPage";
 import PasswordPage from "./components/login/PasswordPage";
 import CheckPage from "./components/login/CheckPage";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <AppContent />
     </BrowserRouter>
   );
-}
+};
 
-function AppContent() {
+const AppContent = () => {
   const location = useLocation();
 
   return (
     <div>
       <ModalPage />
-      {location.pathname !== "/login" && location.pathname !== "/register" && location.pathname !== "/password" && location.pathname !== "/check" && <Header />}
+      {location.pathname !== "/login" &&
+        location.pathname !== "/register" &&
+        location.pathname !== "/password" &&
+        location.pathname !== "/check" && <Header />}
       <div className="pb-4">
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -41,6 +44,6 @@ function AppContent() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

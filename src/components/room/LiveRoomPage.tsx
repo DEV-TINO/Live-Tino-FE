@@ -4,8 +4,7 @@ import VideoArea from "./VideoArea";
 import DrawingTool from "./DrawingTool";
 import ToolBox from "./ToolBox";
 
-function LiveRoomPage() {
-
+const LiveRoomPage = () => {
   return (
     <div className="grid grid-cols-[minmax(24px,_1fr)_minmax(512px,992px)_24px_320px_minmax(24px,_1fr)]">
       <div></div>
@@ -24,6 +23,6 @@ function LiveRoomPage() {
       <DrawingTool />
     </div>
   );
-}
+};
 
 export default LiveRoomPage;

@@ -2,15 +2,15 @@ import React from "react";
 import useBaseModal from "../../stores/baseModal";
 import useLiveRoomStore from "../../stores/liveRoomStore";
 
-function SettingModal() {
+const SettingModal = () => {
   const { closeModal } = useBaseModal();
   const { setMode, mode } = useLiveRoomStore();
 
-  const handleModalClick = (e: React.MouseEvent) => {
+  const handleModalClick = (e: React.MouseEvent): void => {
     e.stopPropagation();
   };
 
-  const handleModeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleModeChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     setMode(e.target.value);
   };
 
@@ -20,7 +20,11 @@ function SettingModal() {
         <div className="relative bg-white rounded-md shadow">
           <div className="flex items-center justify-between px-4 py-2 border-b rounded-t">
             <h3 className="text-lg font-semibold text-gray-900">Setting</h3>
-            <button onClick={closeModal} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm w-8 h-8 inline-flex justify-center items-center">
+            <button
+              onClick={closeModal}
+              type="button"
+              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm w-8 h-8 inline-flex justify-center items-center"
+            >
               <svg
                 className="w-3 h-3"
                 aria-hidden="true"
@@ -35,7 +39,7 @@ function SettingModal() {
                   strokeWidth="2"
                   d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                 />
-               </svg>
+              </svg>
               <span className="sr-only">Close modal</span>
             </button>
           </div>
@@ -74,16 +78,26 @@ function SettingModal() {
                   공유
                 </label>
                 <div className="flex gap-2">
-                  <div className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-md block w-full p-2.5">https://live-tino.com/12</div>
+                  <div className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-md block w-full p-2.5">
+                    https://live-tino.com/12
+                  </div>
                   <button className="text-sm min-w-14 p-2.5 rounded-md border">공유</button>
                 </div>
               </div>
             </div>
             <div className="flex justify-end gap-2 pt-4">
-              <button onClick={closeModal} type="button" className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700">
+              <button
+                onClick={closeModal}
+                type="button"
+                className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700"
+              >
                 취소
               </button>
-              <button onClick={closeModal} type="button" className="text-white bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm inline-flex items-center px-5 py-2 text-center">
+              <button
+                onClick={closeModal}
+                type="button"
+                className="text-white bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm inline-flex items-center px-5 py-2 text-center"
+              >
                 확인
               </button>
             </div>
@@ -92,6 +106,6 @@ function SettingModal() {
       </div>
     </div>
   );
-}
+};
 
 export default SettingModal;

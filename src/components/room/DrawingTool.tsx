@@ -1,9 +1,9 @@
 import React from "react";
-import { useDrawingStore } from "../../stores/drawingStore"
+import { useDrawingStore } from "../../stores/drawingStore";
 
-function DrawingTool() {
+const DrawingTool = () => {
   const { color, thickness, transparency, setColor, setThickness, setTransparency } = useDrawingStore();
-  const colors = [
+  const colors: string[] = [
     "#FFFFFF", "#FFFB53", "#FEEA00", "#FFCD90", "#EF9E00",
     "#FF7201", "#D80104", "#FE0194", "#F25B79", "#CE0047",
     "#B5057F", "#5F147D", "#011989", "#0145A0", "#0096D0",
@@ -33,7 +33,12 @@ function DrawingTool() {
         </div>
         <div className="rounded-md grid grid-cols-6 gap-1 xl:grid-cols-12">
           {colors.map((colorOption, index) => (
-            <div key={index} className={`h-8 w-8 xl:w-6 xl:h-6 rounded ${getColor(colorOption)}`} style={{ backgroundColor: colorOption }} onClick={() => setColor(colorOption)}></div>
+            <div
+              key={index}
+              className={`h-8 w-8 xl:w-6 xl:h-6 rounded ${getColor(colorOption)}`}
+              style={{ backgroundColor: colorOption }}
+              onClick={() => setColor(colorOption)}
+            ></div>
           ))}
         </div>
       </div>
@@ -45,8 +50,15 @@ function DrawingTool() {
             {Array.from({ length: 5 }).map((_, index) => {
               const size = (index + 1) * 4;
               return (
-                <div key={index} className={`group w-8 h-8 border border-gray-300 hover:border-gray-400 rounded-full flex items-center justify-center ${getThicknessBorder(size)}`} onClick={() => setThickness(size)}>
-                  <div className={`group-hover:bg-gray-400 bg-gray-300 rounded-full ${getThicknessBackground(size)}`} style={{ width: size, height: size }}></div>
+                <div
+                  key={index}
+                  className={`group w-8 h-8 border border-gray-300 hover:border-gray-400 rounded-full flex items-center justify-center ${getThicknessBorder(size)}`}
+                  onClick={() => setThickness(size)}
+                >
+                  <div
+                    className={`group-hover:bg-gray-400 bg-gray-300 rounded-full ${getThicknessBackground(size)}`}
+                    style={{ width: size, height: size }}
+                  ></div>
                 </div>
               );
             })}
@@ -56,13 +68,20 @@ function DrawingTool() {
           <div>Opacity</div>
           <div className="bg-gray-50 rounded w-full h-[50px] xl:h-[52px] flex items-center gap-2 p-4 justify-center">
             <div className="min-w-8 h-8 border border-gray-300 rounded-full"></div>
-            <input type="range" value={transparency} min="0" max="100" className="w-full h-1.5 appearance-none bg-gray-300 rounded-full accent-gray-400" onChange={(e) => setTransparency(Number(e.target.value))} />
+            <input
+              type="range"
+              value={transparency}
+              min="0"
+              max="100"
+              className="w-full h-1.5 appearance-none bg-gray-300 rounded-full accent-gray-400"
+              onChange={(e) => setTransparency(Number(e.target.value))}
+            />
             <div className="min-w-8 h-8 border border-gray-300 rounded-full bg-gray-300"></div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default DrawingTool;

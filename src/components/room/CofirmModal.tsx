@@ -2,22 +2,25 @@ import React from "react";
 import useBaseModal from "../../stores/baseModal";
 import { useNavigate } from "react-router-dom";
 
-function CofirmModal() {
+const ConfirmModal = () => {
   const { closeModal } = useBaseModal();
   const navigate = useNavigate();
 
-  const handleModalClick = (e: React.MouseEvent) => {
+  const handleModalClick = (e: React.MouseEvent): void => {
     e.stopPropagation();
   };
 
-  const handleClickConfirm = () => {
+  const handleClickConfirm = (): void => {
     closeModal();
     navigate(`/`);
   };
 
   return (
     <div onClick={handleModalClick} className="relative p-4 w-full max-w-sm max-h-full bg-white rounded-md shadow">
-      <button onClick={closeModal} className="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm w-8 h-8 inline-flex justify-center items-center">
+      <button
+        onClick={closeModal}
+        className="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm w-8 h-8 inline-flex justify-center items-center"
+      >
         <svg
           className="w-3 h-3"
           aria-hidden="true"
@@ -55,16 +58,24 @@ function CofirmModal() {
           방송을 종료하시겠습니까?
         </h3>
         <div className="flex justify-center gap-3">
-          <button onClick={handleClickConfirm} type="button" className="text-white bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm inline-flex items-center px-5 py-2 text-center">
+          <button
+            onClick={handleClickConfirm}
+            type="button"
+            className="text-white bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm inline-flex items-center px-5 py-2 text-center"
+          >
             확인
           </button>
-          <button onClick={closeModal} type="button" className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700">
+          <button
+            onClick={closeModal}
+            type="button"
+            className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700"
+          >
             취소
           </button>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default CofirmModal;
+export default ConfirmModal;

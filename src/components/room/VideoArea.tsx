@@ -11,57 +11,17 @@ interface DrawPoint {
   transparency: number;
 }
 
-function VideoArea() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+const useDrawingHandlers = (originalWidth: number, originalHeight: number) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const audionRef = useRef<HTMLVideoElement | null>(null);
-
   const [isDrawing, setIsDrawing] = useState(false);
   const [drawPoints, setDrawPoints] = useState<DrawPoint[]>([]);
-
-  const originalWidth = 992;
-  const originalHeight = 558;
-
-  const { mode } = useLiveRoomStore();
   const { color, thickness, transparency, tool } = useDrawingStore();
-
-  useEffect(() => { // 화면 받아오기
-    if (mode === "camera") {
-      navigator.mediaDevices
-        .getUserMedia({ 
-          video: true, 
-          audio: true 
-        })
-        .then((stream) => {
-          videoRef.current!.srcObject = stream;
-          audionRef.current!.srcObject = stream;
-        })
-        .catch((err) => 
-          console.error("Failed to access camera: ", err)
-      );
-    }
-    if (mode === "screen") {
-      navigator.mediaDevices
-        .getDisplayMedia({ 
-          video: true, 
-        audio: true 
-        })
-        .then((stream) => {
-          videoRef.current!.srcObject = stream;
-          audionRef.current!.srcObject = stream;
-        })
-        .catch((err) =>
-          console.error("Failed to access screen share: ", err)
-      );
-    }
-  }, [mode]);
 
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const rect = canvas.getBoundingClientRect(); //캔버스 크기
+    const rect = canvas.getBoundingClientRect();
 
     const newPoint = {
       x: (e.clientX - rect.left) * (originalWidth / rect.width),
@@ -73,22 +33,21 @@ function VideoArea() {
     };
 
     setDrawPoints((prev) => [...prev, newPoint]);
-    console.log(drawPoints);
     setIsDrawing(true);
   };
 
   const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas || !isDrawing) return;
-  
+
     const rect = canvas.getBoundingClientRect();
     const x = (e.clientX - rect.left) * (originalWidth / rect.width);
     const y = (e.clientY - rect.top) * (originalHeight / rect.height);
-  
+
     if (tool === "Eraser") {
       setDrawPoints((prev) =>
         prev.map((point) => {
-          const distance = Math.hypot(point.x - x, point.y - y);  //유클리드
+          const distance = Math.hypot(point.x - x, point.y - y);
           if (distance <= thickness) {
             return { ...point, isDrawing: false };
           }
@@ -98,7 +57,7 @@ function VideoArea() {
     } else {
       const context = canvas.getContext("2d");
       if (!context) return;
-  
+
       const newPoint: DrawPoint = {
         x,
         y,
@@ -107,7 +66,7 @@ function VideoArea() {
         thickness,
         transparency,
       };
-  
+
       const prevPoint = drawPoints[drawPoints.length - 1];
       if (prevPoint) {
         context.beginPath();
@@ -118,7 +77,7 @@ function VideoArea() {
         context.globalAlpha = newPoint.transparency / 100;
         context.stroke();
       }
-  
+
       setDrawPoints((prev) => [...prev, newPoint]);
     }
   };
@@ -126,6 +85,53 @@ function VideoArea() {
   const stopDrawing = () => {
     setIsDrawing(false);
   };
+
+  return { canvasRef, drawPoints, setDrawPoints, startDrawing, draw, stopDrawing };
+};
+
+const useMediaStream = () => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const audioRef = useRef<HTMLVideoElement | null>(null);
+  const { mode } = useLiveRoomStore();
+
+  useEffect(() => {
+    if (mode === "camera") {
+      navigator.mediaDevices
+        .getUserMedia({ video: true, audio: true })
+        .then((stream) => {
+          if (videoRef.current) videoRef.current.srcObject = stream;
+          if (audioRef.current) audioRef.current.srcObject = stream;
+        })
+        .catch((err) => console.error("Failed to access camera: ", err));
+    }
+    if (mode === "screen") {
+      navigator.mediaDevices
+        .getDisplayMedia({ video: true, audio: true })
+        .then((stream) => {
+          if (videoRef.current) videoRef.current.srcObject = stream;
+          if (audioRef.current) audioRef.current.srcObject = stream;
+        })
+        .catch((err) => console.error("Failed to access screen share: ", err));
+    }
+  }, [mode]);
+
+  return { videoRef, audioRef };
+};
+
+const VideoArea = () => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const originalWidth = 992;
+  const originalHeight = 558;
+
+  const { videoRef } = useMediaStream();
+  const {
+    canvasRef,
+    drawPoints,
+    setDrawPoints,
+    startDrawing,
+    draw,
+    stopDrawing,
+  } = useDrawingHandlers(originalWidth, originalHeight);
 
   const redrawCanvas = () => {
     const canvas = canvasRef.current;
@@ -184,26 +190,16 @@ function VideoArea() {
       <div className="absolute top-0 left-0 w-full h-12 bg-gradient-to-b rounded-t-md from-neutral-950 to-transparent px-4 py-2 text-white font-semibold text-lg z-10">
         그림 맞추기 하자
       </div>
-      <div ref={containerRef} className="aspect-[16/9] relative">
-        {mode === "camera" && (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            className="absolute w-full h-full object-cover z-0 rounded-md"
-          />
-        )}
-        {mode === "screen" && (
-          <video
-            ref={videoRef}
-            autoPlay
-            className="absolute w-full h-full object-cover z-0 rounded-md"
-          />
-        )}
-        {mode === "board" && (
-          <div className="absolute w-full h-full bg-gray-50 z-0 rounded-md"></div>
-        )}
-        <canvas ref={canvasRef} style={{ position: "absolute", top: 0, left: 0, zIndex: 5, border: "1px solid transparent" }}
+      <div ref={containerRef} className="aspect-[16/9] relative bg-gray-50">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          className="absolute w-full h-full object-cover z-0 rounded-md"
+        />
+        <canvas
+          ref={canvasRef}
+          style={{ position: "absolute", top: 0, left: 0, zIndex: 5, border: "1px solid transparent" }}
           onMouseDown={startDrawing}
           onMouseMove={draw}
           onMouseUp={stopDrawing}
@@ -212,6 +208,6 @@ function VideoArea() {
       </div>
     </div>
   );
-}
+};
 
 export default VideoArea;
