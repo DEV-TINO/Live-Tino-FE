@@ -1,4 +1,3 @@
-import React from "react";
 import useVideoStore from "../../stores/videoStore";
 
 const Pagination = ({ itemsPerPage }: { itemsPerPage: number }) => {

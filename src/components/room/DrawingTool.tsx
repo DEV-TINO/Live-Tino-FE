@@ -1,4 +1,3 @@
-import React from "react";
 import { useDrawingStore } from "../../stores/drawingStore";
 
 const DrawingTool = () => {

@@ -1,4 +1,3 @@
-import React from "react";
 import useBaseModal from "../../stores/baseModal";
 import ModalBackground from "./ModalBackground";
 import CofirmModal from "../room/CofirmModal";

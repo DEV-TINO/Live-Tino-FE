@@ -1,4 +1,3 @@
-import React from "react";
 import LoginTab from "./LoginTab";
 import { useNavigate } from "react-router-dom";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import useViewerModal from "../../stores/viewerModal";
 import ViewerModal from "./ViewerModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

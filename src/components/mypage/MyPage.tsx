@@ -1,4 +1,3 @@
-import React from "react";
 import ProfileTab from "./ProfileTab";
 import VideoTable from "./VideoTable";
 import Pagination from "./Pagination";
