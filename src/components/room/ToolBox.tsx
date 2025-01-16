@@ -1,4 +1,3 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition, faArrowLeft, faArrowRight, faEraser, faPencil } from "@fortawesome/free-solid-svg-icons";
 import useDrawingStore from "../../stores/drawingStore";
