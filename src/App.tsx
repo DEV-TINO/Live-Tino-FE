@@ -35,7 +35,7 @@ const AppContent = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/live" element={<LiveRoomPage />} />
           <Route path="/my" element={<MyPage />} />
-          <Route path="/video" element={<PlayPage />} />
+          <Route path="/video/:id" element={<PlayPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/password" element={<PasswordPage />} />

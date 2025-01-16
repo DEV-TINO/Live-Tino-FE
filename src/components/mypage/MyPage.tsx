@@ -32,7 +32,7 @@ const MyPage = () => {
           </button>
         </div>
       </form>
-      <div className="col-start-4 row-start-2 flex h-[520px] justify-between flex-col">
+      <div className="col-start-4 row-start-2 flex h-[600px] justify-between flex-col">
         <VideoTable />
         <div className="w-full flex justify-center">
           <Pagination itemsPerPage={itemsPerPage} />
