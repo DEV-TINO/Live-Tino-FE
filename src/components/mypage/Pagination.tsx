@@ -1,7 +1,7 @@
 import useVideoStore from "../../stores/videoStore";
 
-const Pagination = ({ itemsPerPage }: { itemsPerPage: number }) => {
-  const { videos, currentPage, setCurrentPage } = useVideoStore();
+const Pagination = () => {
+  const { videos, currentPage, itemsPerPage, setCurrentPage } = useVideoStore();
   const totalPages = Math.ceil(videos.length / itemsPerPage);
 
   if (totalPages <= 1) return null;

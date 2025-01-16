@@ -6,7 +6,7 @@ import Pagination from "./Pagination";
 
 const PlayPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { videos } = useVideoStore(); //이렇게 하면 모든 비디오에서 아이디를 하나씩 비교해야하는데...
+  const { videos } = useVideoStore();
   const video = videos.find((video) => video.id === Number(id));
 
   if (!video) {
@@ -34,8 +34,8 @@ const PlayPage = () => {
       </div>
       <div></div>
       <div className="flex flex-col items-center h-[620px] justify-between">
-        <PlayVideoTable itemsPerPage={6} />
-        <Pagination itemsPerPage={6} />
+        <PlayVideoTable videoId={video.id} />
+        <Pagination />
       </div>
     </div>
   );

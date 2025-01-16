@@ -29,7 +29,13 @@ const PlayVideoTable = ({ videoId }: { videoId: number }) => {
           </div>
           <div className="px-2 w-full">
             <div className="flex justify-between items-center">
-              <div>{video.title}</div>
+              <div
+                className={`${
+                  video.id === videoId ? "text-blue-600 font-semibold" : "text-black"
+                }`}
+              >
+                {video.title}
+              </div>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </div>
             <div className="text-sm text-gray-700">{video.date}</div>

@@ -12,8 +12,7 @@ type TVideo = {
 
 const VideoTable = () => {
   const navigate = useNavigate();
-  const { videos, currentPage } = useVideoStore();
-  const itemsPerPage = 6;
+  const { videos, currentPage, itemsPerPage } = useVideoStore();
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentVideos = videos.slice(startIndex, startIndex + itemsPerPage);
 
