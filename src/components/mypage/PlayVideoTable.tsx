@@ -14,6 +14,11 @@ const PlayVideoTable = ({ videoId }: { videoId: number }) => {
     navigate(`/video/${videoId}`);
   };
 
+  const getVideoTitleClass = (id: number) => {
+    if (id === videoId) return "text-blue-600 font-semibold";
+    return "text-black";
+  };
+
   return (
     <div className="flex flex-col gap-3 w-full">
       {currentVideos.map((video) => (
@@ -29,13 +34,7 @@ const PlayVideoTable = ({ videoId }: { videoId: number }) => {
           </div>
           <div className="px-2 w-full">
             <div className="flex justify-between items-center">
-              <div
-                className={`${
-                  video.id === videoId ? "text-blue-600 font-semibold" : "text-black"
-                }`}
-              >
-                {video.title}
-              </div>
+              <div className={getVideoTitleClass(video.id)}>{video.title}</div>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </div>
             <div className="text-sm text-gray-700">{video.date}</div>
