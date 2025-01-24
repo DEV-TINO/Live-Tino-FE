@@ -1,4 +1,6 @@
 import useVideoStore from "../../stores/videoStore";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const Pagination = () => {
   const { videos, currentPage, itemsPerPage, setCurrentPage } = useVideoStore();
@@ -32,9 +34,9 @@ const Pagination = () => {
           <button
             disabled={currentPage === 1}
             onClick={() => handlePageChange(currentPage - 1)}
-            className={`px-3 h-8 border border-gray-300 rounded-l-md ${getFirstPageClass()}`}
+            className={`px-3 h-8 border border-gray-300 rounded-l-md flex items-center justify-center ${getFirstPageClass()}`}
           >
-            Previous
+            <FontAwesomeIcon icon={faChevronLeft} size="sm" />
           </button>
         </li>
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -51,9 +53,9 @@ const Pagination = () => {
           <button
             disabled={currentPage === totalPages}
             onClick={() => handlePageChange(currentPage + 1)}
-            className={`px-3 h-8 border border-gray-300 rounded-r-md ${getLastPageClass()}`}
+            className={`px-3 h-8 border border-gray-300 rounded-r-md flex items-center justify-center ${getLastPageClass()}`}
           >
-            Next
+            <FontAwesomeIcon icon={faChevronRight} size="sm" />
           </button>
         </li>
       </ul>
