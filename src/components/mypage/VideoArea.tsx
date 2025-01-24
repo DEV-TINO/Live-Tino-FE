@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import SelectionModal from "./SelectionModal";
 
-interface VideoAreaProps {
+interface IVideoAreaProps {
   title: string;
 }
 
-const VideoArea: React.FC<VideoAreaProps> = ({ title }) => {
+const VideoArea: React.FC<IVideoAreaProps> = ({ title }) => {
   const { openModal, isModalOpen } = useSelectionModal();
 
   return (

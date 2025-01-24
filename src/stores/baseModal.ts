@@ -1,6 +1,6 @@
 import { create } from "zustand"; 
 
-interface BaseModal {
+interface IBaseModal {
   isModalOpen: boolean;
   modalType: string;
   setModalType: (type: string) => void;
@@ -8,7 +8,7 @@ interface BaseModal {
   closeModal: () => void;
 }
 
-const useBaseModal = create<BaseModal>((set) => ({
+const useBaseModal = create<IBaseModal>((set) => ({
   isModalOpen: false,
   modalType: '',
   setModalType: (type) => set({ modalType: type }),

@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-interface liveRoomStore {
+interface ILiveRoomStore {
   mode: string;
   setMode: (mode: string) => void;
 }
 
-export const useLiveRoomStore = create<liveRoomStore>((set) => ({
+export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
   mode: 'board',
   setMode: (mode) => set({ mode }),
 }));

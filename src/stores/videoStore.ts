@@ -7,7 +7,7 @@ type TVideo = {
   duration: string;
 };
 
-interface VideoStore {
+interface IVideoStore {
   videos: TVideo[];
   currentPage: number;
   setVideos: (videos: TVideo[]) => void;
@@ -15,7 +15,7 @@ interface VideoStore {
   itemsPerPage: number;
 }
 
-const useVideoStore = create<VideoStore>((set) => ({
+const useVideoStore = create<IVideoStore>((set) => ({
   videos: [
     { id: 1, title: "첫 번째 동영상", date: "24.11.12", duration: "00:27:12" },
     { id: 2, title: "두 번째 동영상", date: "24.11.13", duration: "00:30:45" },

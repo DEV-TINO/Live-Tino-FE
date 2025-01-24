@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useDrawingStore } from "../../stores/drawingStore";
 import { useLiveRoomStore } from "../../stores/liveRoomStore";
 
-interface DrawPoint {
+interface IDrawPoint {
   x: number;
   y: number;
   isDrawing: boolean;
@@ -14,7 +14,7 @@ interface DrawPoint {
 const useDrawingHandlers = (originalWidth: number, originalHeight: number) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [drawPoints, setDrawPoints] = useState<DrawPoint[]>([]);
+  const [drawPoints, setDrawPoints] = useState<IDrawPoint[]>([]);
   const { color, thickness, transparency, tool } = useDrawingStore();
 
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -58,7 +58,7 @@ const useDrawingHandlers = (originalWidth: number, originalHeight: number) => {
       const context = canvas.getContext("2d");
       if (!context) return;
 
-      const newPoint: DrawPoint = {
+      const newPoint: IDrawPoint = {
         x,
         y,
         isDrawing: true,

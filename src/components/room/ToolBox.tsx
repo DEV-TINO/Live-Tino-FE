@@ -2,12 +2,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition, faArrowLeft, faArrowRight, faEraser, faPencil } from "@fortawesome/free-solid-svg-icons";
 import useDrawingStore from "../../stores/drawingStore";
 
-type ToolIcon = {
+type TToolIcon = {
   icon: IconDefinition;
   label: string;
 };
 
-const icons: ToolIcon[] = [
+const icons: TToolIcon[] = [
   { icon: faPencil, label: "Pencil" },
   { icon: faEraser, label: "Eraser" },
   { icon: faArrowLeft, label: "Undo" },

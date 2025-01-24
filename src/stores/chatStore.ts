@@ -1,17 +1,17 @@
 import { create } from "zustand";
 
-type ChatMessage = {
+type TChatMessage = {
   id: number;
   username: string;
   message: string;
 };
 
-interface ChatStore {
-  messages: ChatMessage[];
+interface IChatStore {
+  messages: TChatMessage[];
   viewer: number;
 }
 
-const useChatStore = create<ChatStore>(() => ({
+const useChatStore = create<IChatStore>(() => ({
   messages: [
     { id: 1, username: "hmyang", message: "안녕하세요 반갑습니다 안녕하세요 반갑습니다 안녕하세요 반갑습니다 안녕하세요 반갑습니다" },
     { id: 2, username: "hmyang", message: "안녕하세요 반갑습니다 안녕하세요 반갑습니다 안녕하세요 반갑습니다 안녕하세요 반갑습니다" },

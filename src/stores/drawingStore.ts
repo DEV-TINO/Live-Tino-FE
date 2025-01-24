@@ -1,6 +1,6 @@
 import { create } from "zustand"; 
 
-interface DrawingStore {
+interface IDrawingStore {
   color: string;
   thickness: number;
   transparency: number;
@@ -11,7 +11,7 @@ interface DrawingStore {
   setTransparency: (transparency: number) => void;
 }
 
-export const useDrawingStore = create<DrawingStore>((set) => ({
+export const useDrawingStore = create<IDrawingStore>((set) => ({
   color: "#000000",
   thickness: 4,
   transparency: 100,

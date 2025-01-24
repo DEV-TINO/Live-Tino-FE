@@ -1,11 +1,11 @@
 import React, { useEffect, FC } from "react";
 import useBaseModal from "../../stores/baseModal";
 
-interface ModalBackgroundProps {
+interface IModalBackgroundProps {
   children: React.ReactNode;
 }
 
-const ModalBackground: FC<ModalBackgroundProps> = ({ children }) => {
+const ModalBackground: FC<IModalBackgroundProps> = ({ children }) => {
   const { closeModal } = useBaseModal();
 
   const preventScroll = (): void => {
