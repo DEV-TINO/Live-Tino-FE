@@ -19,14 +19,14 @@ const MyPage = () => {
             type="search" 
             id="default-search" 
             className="block w-full p-3 ps-10 h-11 text-sm text-gray-900 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" 
-            placeholder="제목" 
+            placeholder="Title" 
             required 
           />
           <button 
             type="submit" 
             className="text-white absolute end-1.5 bottom-1.5 bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm px-4 py-1.5"
           >
-            검색
+            Search
           </button>
         </div>
       </form>

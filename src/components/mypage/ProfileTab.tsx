@@ -18,7 +18,7 @@ const ProfileTab = () => {
         onClick={handleClickProfile} 
         className="mt-4 rounded-md p-2 border border-blue-600 hover:bg-blue-50 text-blue-600"
       >
-        프로필 변경
+        Edit Profile
       </button>
     </div>
   );

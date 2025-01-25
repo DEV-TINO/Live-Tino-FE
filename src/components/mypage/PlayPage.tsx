@@ -10,7 +10,7 @@ const PlayPage = () => {
   const video = videos.find((video) => video.id === Number(id));
 
   if (!video) {
-    return <div>비디오 정보를 찾을 수 없습니다.</div>;
+    return <div>Cannot find video</div>;
   }
 
   return (
@@ -22,11 +22,11 @@ const PlayPage = () => {
           <div>{video.title}</div>
           <div className="flex gap-4 text-gray-600">
             <div className="text-base flex gap-2">
-              <div>방송 일자</div>
+              <div>Date</div>
               <div className="font-normal">{video.date}</div>
             </div>
             <div className="text-base flex gap-2">
-              <div>영상 길이</div>
+              <div>Duration</div>
               <div className="font-normal">{video.duration}</div>
             </div>
           </div>
@@ -45,14 +45,14 @@ const PlayPage = () => {
               type="search" 
               id="default-search" 
               className="block w-full p-3 ps-10 h-11 text-sm text-gray-900 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" 
-              placeholder="제목" 
+              placeholder="Title" 
               required 
             />
             <button 
               type="submit" 
               className="text-white absolute end-1.5 bottom-1.5 bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm px-4 py-1.5"
             >
-              검색
+              Search
             </button>
           </div>
         </form>
