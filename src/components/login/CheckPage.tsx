@@ -15,21 +15,24 @@ const CheckPage = () => {
 
   return (
     <div className="w-screen pt-56 flex flex-col gap-4 items-center">
-      <div className="relative w-80">
-        <button 
-          onClick={handleClickBack} 
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 text-gray-400"
-        >
-          <FontAwesomeIcon icon={faChevronLeft} size="lg" />
-        </button>
-        <button 
-          onClick={handleClickLogo} 
-          className="text-3xl font-semibold text-blue-600 w-full text-center"
-        >
-          LIVE-TINO
-        </button>
+      <div className="flex flex-col gap-2">
+        <div className="relative w-80">
+          <button 
+            onClick={handleClickBack} 
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 text-gray-400"
+          >
+            <FontAwesomeIcon icon={faChevronLeft} size="lg" />
+          </button>
+          <button 
+            onClick={handleClickLogo} 
+            className="text-3xl font-semibold text-blue-600 w-full text-center"
+          >
+            LIVE-TINO
+          </button>
+        </div>
+        <div className="text-gray-400 text-center">Find Password</div>
       </div>
-      <form className="mt-8 w-80 flex flex-col gap-2">
+      <form className="mt-4 w-80 flex flex-col gap-2">
         <div className="mb-2">
           <label 
             htmlFor="name" 
