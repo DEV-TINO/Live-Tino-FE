@@ -6,11 +6,11 @@ import RegisterTab from "./RegisterTab";
 const RegisterPage = () => {
   const navigate = useNavigate();
 
-  const handleClickLogo = (): void => {
+  const handleClickLogo = () => {
     navigate(`/`);
   };
 
-  const handleClickBack = (): void => {
+  const handleClickBack = () => {
     navigate('/login');
   };
 

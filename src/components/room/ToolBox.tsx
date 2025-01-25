@@ -21,7 +21,7 @@ const DrawingTool = () => {
     return tool === value ? "text-gray-950" : "text-gray-400 hover:bg-gray-100";
   };
 
-  const isEraser = (value: string): void => {
+  const isEraser = (value: string) => {
     if (value === "Eraser" || value === "Pencil") {
       setTool(value);
     }

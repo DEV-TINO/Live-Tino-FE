@@ -4,7 +4,7 @@ import useViewerModal from "../../stores/viewerModal";
 const ViewerModal = () => {
   const { closeModal } = useViewerModal();
 
-  const handleModalClick = (e: React.MouseEvent): void => {
+  const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 

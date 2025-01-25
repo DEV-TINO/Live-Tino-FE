@@ -6,11 +6,11 @@ const ConfirmModal = () => {
   const { closeModal } = useBaseModal();
   const navigate = useNavigate();
 
-  const handleModalClick = (e: React.MouseEvent): void => {
+  const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
-  const handleClickConfirm = (): void => {
+  const handleClickConfirm = () => {
     closeModal();
     navigate(`/`);
   };

@@ -7,23 +7,23 @@ const Header = () => {
   const isLogin: boolean = false;
   const { openModal } = useBaseModal();
 
-  const handleClickLogo = (): void => {
+  const handleClickLogo = () => {
     navigate(`/`);
   };
 
-  const handleClickMyPage = (): void => {
+  const handleClickMyPage = () => {
     navigate(`/my`);
   };
 
-  const handleClickLoginPage = (): void => {
+  const handleClickLoginPage = () => {
     navigate(`/login`);
   };
 
-  const handleClickExit = (): void => {
+  const handleClickExit = () => {
     openModal("exit");
   };
 
-  const handleClickSetting = (): void => {
+  const handleClickSetting = () => {
     openModal("setting");
   };
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const MainPage = () => {
   const navigate = useNavigate();
 
-  const handleClickLiveButton = (): void => {
+  const handleClickLiveButton = () => {
     navigate(`/live`);
   };
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const LoginTab = () => {
   const navigate = useNavigate();
 
-  const handleClickPassword = (): void => {
+  const handleClickPassword = () => {
     navigate(`/password`);
   };
 

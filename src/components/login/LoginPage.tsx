@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const handleClickLogo = (): void => {
+  const handleClickLogo = () => {
     navigate(`/`);
   };
 
-  const handleClickRegister = (): void => {
+  const handleClickRegister = () => {
     navigate(`/register`);
   };
 

@@ -3,7 +3,7 @@ import useBaseModal from "../../stores/baseModal";
 const ProfileTab = () => {
   const { openModal } = useBaseModal();
 
-  const handleClickProfile = (): void => {
+  const handleClickProfile = () => {
     openModal("profile");
   };
 

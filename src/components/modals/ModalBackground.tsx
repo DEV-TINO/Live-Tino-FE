@@ -8,11 +8,11 @@ interface IModalBackgroundProps {
 const ModalBackground: FC<IModalBackgroundProps> = ({ children }) => {
   const { closeModal } = useBaseModal();
 
-  const preventScroll = (): void => {
+  const preventScroll = () => {
     document.documentElement.style.overflow = "hidden";
   };
 
-  const allowScroll = (): void => {
+  const allowScroll = () => {
     document.documentElement.style.overflow = "auto";
   };
 

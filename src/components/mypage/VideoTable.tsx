@@ -16,7 +16,7 @@ const VideoTable = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentVideos = videos.slice(startIndex, startIndex + itemsPerPage);
 
-  const handleClickPlay = (video: TVideo): void => {
+  const handleClickPlay = (video: TVideo) => {
     navigate(`/video/${video.id}`);
   };
 

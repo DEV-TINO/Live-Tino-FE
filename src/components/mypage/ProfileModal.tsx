@@ -4,7 +4,7 @@ import useBaseModal from "../../stores/baseModal";
 const ProfileModal = () => {
   const { closeModal } = useBaseModal();
 
-  const handleModalClick = (e: React.MouseEvent): void => {
+  const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 

@@ -5,11 +5,11 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 const CheckPage = () => {
   const navigate = useNavigate();
 
-  const handleClickLogo = (): void => {
+  const handleClickLogo = () => {
     navigate(`/`);
   };
 
-  const handleClickBack = (): void => {
+  const handleClickBack = () => {
     navigate('/password');
   };
 

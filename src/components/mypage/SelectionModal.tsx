@@ -4,7 +4,7 @@ import useSelectionModal from "../../stores/selectionModal";
 const SelectionModal = () => {
   const { closeModal } = useSelectionModal();
 
-  const handleModalClick = (e: React.MouseEvent): void => {
+  const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 

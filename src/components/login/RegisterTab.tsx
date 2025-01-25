@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const RegisterTab = () => {
   const navigate = useNavigate();
 
-  const handleClickLogin = (): void => {
+  const handleClickLogin = () => {
     navigate(`/login`);
   };
 

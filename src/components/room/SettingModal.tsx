@@ -13,20 +13,20 @@ const SettingModal = () => {
     setCurrentUrl(window.location.href);
   }, []);
 
-  const handleModalClick = (e: React.MouseEvent): void => {
+  const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
-  const handleModeChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleModeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTempMode(e.target.value);
   };
 
-  const handleConfirm = (): void => {
+  const handleConfirm = () => {
     setMode(tempMode);
     closeModal();
   };
 
-  const handleShare = (): void => {
+  const handleShare = () => {
     navigator.clipboard.writeText(currentUrl);
   };
 
