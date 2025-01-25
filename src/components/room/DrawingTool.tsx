@@ -1,14 +1,15 @@
 import { useDrawingStore } from "../../stores/drawingStore";
 
+const COLORS: string[] = [
+  "#FFFFFF", "#FFFB53", "#FEEA00", "#FFCD90", "#EF9E00",
+  "#FF7201", "#D80104", "#FE0194", "#F25B79", "#CE0047",
+  "#B5057F", "#5F147D", "#011989", "#0145A0", "#0096D0",
+  "#0097E6", "#55B72B", "#02793A", "#00685C", "#C8C11A",
+  "#B64F1F", "#67250E", "#7F8187", "#020001"
+];
+
 const DrawingTool = () => {
   const { color, thickness, transparency, setColor, setThickness, setTransparency } = useDrawingStore();
-  const colors: string[] = [
-    "#FFFFFF", "#FFFB53", "#FEEA00", "#FFCD90", "#EF9E00",
-    "#FF7201", "#D80104", "#FE0194", "#F25B79", "#CE0047",
-    "#B5057F", "#5F147D", "#011989", "#0145A0", "#0096D0",
-    "#0097E6", "#55B72B", "#02793A", "#00685C", "#C8C11A",
-    "#B64F1F", "#67250E", "#7F8187", "#020001"
-  ];
 
   const getColor = (colorOption: string) => {
     return color === colorOption ? 'border border-gray-800' : 'border';
@@ -19,7 +20,7 @@ const DrawingTool = () => {
   };
 
   const getThicknessBackground = (size: number) => {
-    return thickness === size ? 'bg-gray-800' : '';
+    return thickness === size ? "bg-gray-800" : "";
   };
 
   return (
@@ -28,10 +29,13 @@ const DrawingTool = () => {
       <div className="flex flex-col gap-2">
         <div className="flex gap-4 items-center">
           <div>Color</div>
-          <div className="w-12 h-6 rounded-md border border-gray-800" style={{ backgroundColor: color }}></div>
+          <div
+            className="w-12 h-6 rounded-md border border-gray-800"
+            style={{ backgroundColor: color }}
+          ></div>
         </div>
         <div className="rounded-md grid grid-cols-6 gap-1 xl:grid-cols-12">
-          {colors.map((colorOption, index) => (
+          {COLORS.map((colorOption, index) => (
             <div
               key={index}
               className={`h-8 w-8 xl:w-6 xl:h-6 rounded ${getColor(colorOption)}`}

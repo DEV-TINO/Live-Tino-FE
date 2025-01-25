@@ -7,7 +7,7 @@ type TToolIcon = {
   label: string;
 };
 
-const icons: TToolIcon[] = [
+const ICONS: TToolIcon[] = [
   { icon: faPencil, label: "Pencil" },
   { icon: faEraser, label: "Eraser" },
   { icon: faArrowLeft, label: "Undo" },
@@ -30,7 +30,7 @@ const DrawingTool = () => {
   return (
     <div className="w-full flex justify-center">
       <div className="rounded bg-white flex gap-2 p-2 z-20">
-        {icons.map(({ icon, label }, index) => (
+        {ICONS.map(({ icon, label }, index) => (
           <div
             key={index}
             className={`rounded h-8 w-8 flex items-center justify-center cursor-pointer ${getButtonClass(label)}`}

@@ -2,6 +2,9 @@ import React, { useRef, useState, useEffect } from "react";
 import { useDrawingStore } from "../../stores/drawingStore";
 import { useLiveRoomStore } from "../../stores/liveRoomStore";
 
+const WIDTH = 992;
+const HEIGHT = 558;
+
 interface IDrawPoint {
   x: number;
   y: number;
@@ -11,7 +14,7 @@ interface IDrawPoint {
   transparency: number;
 }
 
-const useDrawingHandlers = (originalWidth: number, originalHeight: number) => {
+const useDrawingHandlers = (WIDTH: number, HEIGHT: number) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [drawPoints, setDrawPoints] = useState<IDrawPoint[]>([]);
@@ -24,8 +27,8 @@ const useDrawingHandlers = (originalWidth: number, originalHeight: number) => {
     const rect = canvas.getBoundingClientRect();
 
     const newPoint = {
-      x: (e.clientX - rect.left) * (originalWidth / rect.width),
-      y: (e.clientY - rect.top) * (originalHeight / rect.height),
+      x: (e.clientX - rect.left) * (WIDTH / rect.width),
+      y: (e.clientY - rect.top) * (HEIGHT / rect.height),
       isDrawing: false,
       color,
       thickness,
@@ -41,8 +44,8 @@ const useDrawingHandlers = (originalWidth: number, originalHeight: number) => {
     if (!canvas || !isDrawing) return;
 
     const rect = canvas.getBoundingClientRect();
-    const x = (e.clientX - rect.left) * (originalWidth / rect.width);
-    const y = (e.clientY - rect.top) * (originalHeight / rect.height);
+    const x = (e.clientX - rect.left) * (WIDTH / rect.width);
+    const y = (e.clientY - rect.top) * (HEIGHT / rect.height);
 
     if (tool === "Eraser") {
       setDrawPoints((prev) =>
@@ -122,8 +125,6 @@ const useMediaStream = () => {
 
 const VideoArea = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const originalWidth = 992;
-  const originalHeight = 558;
 
   const { videoRef } = useMediaStream();
   const {
@@ -132,7 +133,7 @@ const VideoArea = () => {
     startDrawing,
     draw,
     stopDrawing,
-  } = useDrawingHandlers(originalWidth, originalHeight);
+  } = useDrawingHandlers(WIDTH, HEIGHT);
 
   const redrawCanvas = () => {
     const canvas = canvasRef.current;
@@ -141,8 +142,8 @@ const VideoArea = () => {
     const context = canvas.getContext("2d");
     if (!context) return;
 
-    const canvasWidth = containerRef.current?.offsetWidth || originalWidth;
-    const canvasHeight = containerRef.current?.offsetHeight || originalHeight;
+    const canvasWidth = containerRef.current?.offsetWidth || WIDTH;
+    const canvasHeight = containerRef.current?.offsetHeight || HEIGHT;
 
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
@@ -150,8 +151,8 @@ const VideoArea = () => {
     drawPoints.forEach((point, index) => {
       if (point.isDrawing && index > 0) {
         const prevPoint = drawPoints[index - 1];
-        const scaleX = canvasWidth / originalWidth;
-        const scaleY = canvasHeight / originalHeight;
+        const scaleX = canvasWidth / WIDTH;
+        const scaleY = canvasHeight / HEIGHT;
 
         const adjustedPrevPoint = {
           x: prevPoint.x * scaleX,
