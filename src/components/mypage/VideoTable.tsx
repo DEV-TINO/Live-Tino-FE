@@ -30,7 +30,7 @@ const VideoTable = () => {
             </div>
           </div>
           <div className="flex w-full justify-between pr-2 pt-2 items-center gap-4">
-            <div className="pl-0.5">{video.title}</div>
+            <div className="pl-0.5 truncate">{video.title}</div>
             <FontAwesomeIcon icon={faEllipsisVertical} />
           </div>
           <div className="text-sm pl-0.5 text-gray-700">{video.date}</div>

@@ -32,9 +32,9 @@ const PlayVideoTable = ({ videoId }: { videoId: number }) => {
               {video.duration}
             </div>
           </div>
-          <div className="px-2 w-full">
+          <div className="px-2 w-44">
             <div className="flex justify-between items-center">
-              <div className={getVideoTitleClass(video.id)}>{video.title}</div>
+              <div className={`${getVideoTitleClass(video.id)} truncate`}>{video.title}</div>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </div>
             <div className="text-sm text-gray-700">{video.date}</div>
