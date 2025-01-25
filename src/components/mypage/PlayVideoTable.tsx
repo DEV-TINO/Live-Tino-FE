@@ -20,7 +20,7 @@ const PlayVideoTable = ({ videoId }: { videoId: number }) => {
   };
 
   return (
-    <div className="flex flex-col gap-3 w-full">
+    <div className="flex flex-col gap-3 w-full h-full">
       {currentVideos.map((video) => (
         <div
           key={video.id}
