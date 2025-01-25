@@ -4,7 +4,7 @@ import useLiveRoomStore from "../../stores/liveRoomStore";
 
 const SettingModal = () => {
   const { closeModal } = useBaseModal();
-  const { mode, setMode } = useLiveRoomStore();
+  const { mode, setMode, roomSetting, setRoomSetting } = useLiveRoomStore();
 
   const [tempMode, setTempMode] = useState<string>(mode);
   const [currentUrl, setCurrentUrl] = useState<string>("");
@@ -19,6 +19,10 @@ const SettingModal = () => {
 
   const handleModeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTempMode(e.target.value);
+  };
+
+  const handleRoomSettingChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setRoomSetting(e.target.value);
   };
 
   const handleConfirm = () => {
@@ -66,8 +70,11 @@ const SettingModal = () => {
                   Room
                 </label>
                 <div className="bg-gray-50 outline outline-1 outline-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 focus-within:outline-blue-600 focus-within:outline-2">
-                  <select className="bg-transparent w-full focus:outline-none">
-                    <option selected>선택</option>
+                  <select
+                    value={roomSetting}
+                    onChange={handleRoomSettingChange}
+                    className="bg-transparent w-full focus:outline-none"
+                  >
                     <option value="public">public</option>
                     <option value="private">private</option>
                   </select>
@@ -89,6 +96,24 @@ const SettingModal = () => {
                   </select>
                 </div>
               </div>
+              {roomSetting === "private" && (
+                <div className="col-span-2">
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    required
+                  />
+                </div>
+              )}
               <div className="col-span-2">
                 <label className="block mb-2 text-sm font-medium text-gray-900">
                   Share
