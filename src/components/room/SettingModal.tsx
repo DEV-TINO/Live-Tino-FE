@@ -63,7 +63,7 @@ const SettingModal = () => {
             <div className="grid gap-4 mb-4 grid-cols-2 px-2">
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
-                  방 설정
+                  Room
                 </label>
                 <div className="bg-gray-50 outline outline-1 outline-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 focus-within:outline-blue-600 focus-within:outline-2">
                   <select className="bg-transparent w-full focus:outline-none">
@@ -75,7 +75,7 @@ const SettingModal = () => {
               </div>
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
-                  화면 설정
+                  Screen
                 </label>
                 <div className="bg-gray-50 outline outline-1 outline-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 focus-within:outline-blue-600 focus-within:outline-2">
                   <select
@@ -91,7 +91,7 @@ const SettingModal = () => {
               </div>
               <div className="col-span-2">
                 <label className="block mb-2 text-sm font-medium text-gray-900">
-                  공유
+                  Share
                 </label>
                 <div className="flex gap-2">
                   <div className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-md block w-full p-2.5">
@@ -102,7 +102,7 @@ const SettingModal = () => {
                     onClick={handleShare}
                     className="text-sm min-w-14 p-2.5 rounded-md border"
                   >
-                    공유
+                    share
                   </button>
                 </div>
               </div>
@@ -113,14 +113,14 @@ const SettingModal = () => {
                 type="button"
                 className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700"
               >
-                취소
+                Cancel
               </button>
               <button
                 onClick={handleConfirm}
                 type="button"
                 className="text-white bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm inline-flex items-center px-5 py-2 text-center"
               >
-                확인
+                Save
               </button>
             </div>
           </form>

@@ -55,7 +55,7 @@ const ConfirmModal = () => {
           />
         </svg>
         <h3 className="mb-5 text-lg font-normal text-gray-500">
-          방송을 종료하시겠습니까?
+          Are you sure you want to exit<br/>the live room?
         </h3>
         <div className="flex justify-center gap-3">
           <button
@@ -63,14 +63,14 @@ const ConfirmModal = () => {
             type="button"
             className="text-white bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm inline-flex items-center px-5 py-2 text-center"
           >
-            확인
+            Yes, I'm sure
           </button>
           <button
             onClick={closeModal}
             type="button"
             className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700"
           >
-            취소
+            No, cancel
           </button>
         </div>
       </div>

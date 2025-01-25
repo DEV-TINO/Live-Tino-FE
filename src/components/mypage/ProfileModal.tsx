@@ -40,7 +40,7 @@ const ProfileModal = () => {
           <form className="p-4">
             <div className="px-2">
               <label className="block mb-2 text-sm font-medium text-gray-900">
-                이름 변경
+                Nickname
               </label>
               <input
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5"
@@ -52,14 +52,14 @@ const ProfileModal = () => {
                 type="button"
                 className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700"
               >
-                취소
+                Cancel
               </button>
               <button
                 onClick={closeModal}
                 type="button"
                 className="text-white bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm inline-flex items-center px-5 py-2 text-center"
               >
-                확인
+                Save
               </button>
             </div>
           </form>
