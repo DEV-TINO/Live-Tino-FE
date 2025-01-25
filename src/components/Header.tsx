@@ -4,7 +4,7 @@ import useBaseModal from "../stores/baseModal";
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const isLogin: boolean = false;
+  const isLogin: boolean = true;
   const { openModal } = useBaseModal();
 
   const handleClickLogo = () => {
@@ -35,13 +35,13 @@ const Header = () => {
       >
         LIVE-TINO
       </button>
-      <div className="flex gap-6">
+      <div className="flex gap-5">
         {location.pathname === "/live" && (
           <div className="flex gap-6">
             <button onClick={handleClickSetting} className="min-w-14">
               Setting
             </button>
-            <button onClick={handleClickExit} className="min-w-7">
+            <button onClick={handleClickExit} className="min-w-7 bg-red-500 hover:bg-red-600 text-white rounded-md py-1 px-2">
               Exit
             </button>
           </div>
@@ -52,7 +52,8 @@ const Header = () => {
           </button>
         )}
         {isLogin ? (
-          <div className="flex gap-1">
+          <div className="flex gap-1 items-center">
+            <div className="h-5 border mr-3 border-gray-300"></div>
             <div className="font-semibold">김태건</div>
             <div>님</div>
           </div>
