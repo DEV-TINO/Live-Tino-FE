@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useBaseModal from "../../stores/baseModal";
 import useLiveRoomStore from "../../stores/liveRoomStore";
 
@@ -7,6 +7,11 @@ const SettingModal = () => {
   const { mode, setMode } = useLiveRoomStore();
 
   const [tempMode, setTempMode] = useState<string>(mode);
+  const [currentUrl, setCurrentUrl] = useState<string>("");
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
 
   const handleModalClick = (e: React.MouseEvent): void => {
     e.stopPropagation();
@@ -19,6 +24,10 @@ const SettingModal = () => {
   const handleConfirm = (): void => {
     setMode(tempMode);
     closeModal();
+  };
+
+  const handleShare = (): void => {
+    navigator.clipboard.writeText(currentUrl);
   };
 
   return (
@@ -86,9 +95,15 @@ const SettingModal = () => {
                 </label>
                 <div className="flex gap-2">
                   <div className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-md block w-full p-2.5">
-                    https://live-tino.com/12
+                    {currentUrl}
                   </div>
-                  <button className="text-sm min-w-14 p-2.5 rounded-md border">공유</button>
+                  <button
+                    type="button"
+                    onClick={handleShare}
+                    className="text-sm min-w-14 p-2.5 rounded-md border"
+                  >
+                    공유
+                  </button>
                 </div>
               </div>
             </div>
