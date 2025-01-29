@@ -1,11 +1,19 @@
 import { useNavigate } from "react-router-dom";
+import useBaseModal from "../../stores/baseModal";
+
 const USER_ID = "1";
 
 const MainPage = () => {
+  const { openModal } = useBaseModal();
+
   const navigate = useNavigate();
 
   const handleClickLiveButton = () => {
     navigate(`/live/${USER_ID}`);
+  };
+
+  const handleClickCreate = () => {
+    openModal("create");
   };
 
   return (
@@ -20,7 +28,7 @@ const MainPage = () => {
           </p>
           <div className="flex gap-2">
             <button 
-              onClick={handleClickLiveButton} 
+              onClick={handleClickCreate} 
               className="inline-flex items-center justify-center w-32 h-12 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-md hover:bg-gray-100"
             >
               Create Live
