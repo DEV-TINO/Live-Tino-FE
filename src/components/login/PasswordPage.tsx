@@ -6,15 +6,15 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleClickLogo = () => {
-    navigate(`/`);
+    navigate("/");
   };
 
   const handleClickBack = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   const handleClickCheck = () => {
-    navigate(`/check`);
+    navigate("/check");
   };
 
   return (

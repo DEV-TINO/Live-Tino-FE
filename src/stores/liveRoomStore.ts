@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface ILiveRoomStore {
   mode: string;
@@ -8,7 +8,7 @@ interface ILiveRoomStore {
 }
 
 export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
-  mode: 'board',
+  mode: "board",
   setMode: (mode) => set({ mode }),
   roomSetting: "public",
   setRoomSetting: (setting) => set({ roomSetting: setting }),

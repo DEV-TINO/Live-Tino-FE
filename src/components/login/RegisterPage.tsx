@@ -7,11 +7,11 @@ const RegisterPage = () => {
   const navigate = useNavigate();
 
   const handleClickLogo = () => {
-    navigate(`/`);
+    navigate("/");
   };
 
   const handleClickBack = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   return (

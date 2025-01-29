@@ -6,11 +6,11 @@ const CheckPage = () => {
   const navigate = useNavigate();
 
   const handleClickLogo = () => {
-    navigate(`/`);
+    navigate("/");
   };
 
   const handleClickBack = () => {
-    navigate('/password');
+    navigate("/password");
   };
 
   return (
