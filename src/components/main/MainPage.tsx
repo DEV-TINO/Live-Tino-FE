@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
+const USER_ID = "1";
 
 const MainPage = () => {
   const navigate = useNavigate();
 
   const handleClickLiveButton = () => {
-    navigate(`/live`);
+    navigate(`/live/${USER_ID}`);
   };
 
   return (

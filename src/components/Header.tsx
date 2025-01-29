@@ -1,6 +1,8 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import useBaseModal from "../stores/baseModal";
 
+const USER_ID = "1";
+
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -8,15 +10,15 @@ const Header = () => {
   const { openModal } = useBaseModal();
 
   const handleClickLogo = () => {
-    navigate(`/`);
+    navigate("/");
   };
 
   const handleClickMyPage = () => {
-    navigate(`/my`);
+    navigate("/my");
   };
 
   const handleClickLoginPage = () => {
-    navigate(`/login`);
+    navigate("/login");
   };
 
   const handleClickExit = () => {
@@ -36,7 +38,7 @@ const Header = () => {
         LIVE-TINO
       </button>
       <div className="flex gap-5">
-        {location.pathname === "/live" && (
+        {location.pathname === `/live/${USER_ID}` && (
           <div className="flex gap-6">
             <button onClick={handleClickSetting} className="min-w-14">
               Setting
@@ -46,7 +48,7 @@ const Header = () => {
             </button>
           </div>
         )}
-        {location.pathname !== "/live" && (
+        {location.pathname !== `/live/${USER_ID}` && (
           <button className="min-w-16 text-end" onClick={handleClickMyPage}>
             MyPage
           </button>
