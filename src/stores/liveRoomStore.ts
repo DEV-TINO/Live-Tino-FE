@@ -9,6 +9,8 @@ interface ILiveRoomStore {
   setRoomSetting: (setting: string) => void;
   password: string;
   setPassword: (password: string) => void;
+  liveRoomMode: string;
+  setLiveRoomMode: (liveRoomMode: string) => void;
 }
 
 export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
@@ -20,6 +22,8 @@ export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
   setRoomSetting: (setting) => set({ roomSetting: setting }),
   password: "",
   setPassword: (password) => set({ password }),
+  liveRoomMode: "",
+  setLiveRoomMode: (liveRoomMode) => set({ liveRoomMode }),
 }));
 
 export default useLiveRoomStore;

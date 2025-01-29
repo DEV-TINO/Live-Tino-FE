@@ -1,13 +1,13 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import useBaseModal from "../stores/baseModal";
-
-const USER_ID = "1";
+import useLiveRoomStore from "../stores/liveRoomStore";
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isLogin: boolean = true;
   const { openModal } = useBaseModal();
+  const { liveRoomMode } = useLiveRoomStore();
 
   const handleClickLogo = () => {
     navigate("/");
@@ -38,17 +38,17 @@ const Header = () => {
         LIVE-TINO
       </button>
       <div className="flex gap-5">
-        {location.pathname === `/live/${USER_ID}` && (
-          <div className="flex gap-6">
-            <button onClick={handleClickSetting} className="min-w-14">
-              Setting
-            </button>
-            <button onClick={handleClickExit} className="min-w-7 bg-red-500 hover:bg-red-600 text-white rounded-md py-1 px-2">
-              Exit
-            </button>
-          </div>
+        {location.pathname.startsWith("/live/") && liveRoomMode === "create" && (
+          <button onClick={handleClickSetting} className="min-w-14">
+            Setting
+          </button>
         )}
-        {location.pathname !== `/live/${USER_ID}` && (
+        {location.pathname.startsWith("/live/") && (
+          <button onClick={handleClickExit} className="min-w-7 bg-red-500 hover:bg-red-600 text-white rounded-md py-1 px-2">
+            Exit
+          </button>
+        )}
+        {!location.pathname.startsWith("/live/") && (
           <button className="min-w-16 text-end" onClick={handleClickMyPage}>
             MyPage
           </button>

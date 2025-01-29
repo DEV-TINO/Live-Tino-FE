@@ -1,15 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import useBaseModal from "../../stores/baseModal";
-
-const USER_ID = "1";
 
 const MainPage = () => {
   const { openModal } = useBaseModal();
 
-  const navigate = useNavigate();
-
-  const handleClickLiveButton = () => {
-    navigate(`/live/${USER_ID}`);
+  const handleClickJoin = () => {
+    openModal("join");
   };
 
   const handleClickCreate = () => {
@@ -20,7 +15,7 @@ const MainPage = () => {
     <section className="bg-white">
       <div className="grid max-w-screen-xl px-10 2xl:px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-32 lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7">
-          <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">
+          <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight md:text-5xl xl:text-6xl">
             Live Streaming with Interactive Creativity
           </h1>
           <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl break-keep">
@@ -34,7 +29,7 @@ const MainPage = () => {
               Create Live
             </button>
             <button 
-              onClick={handleClickLiveButton} 
+              onClick={handleClickJoin} 
               className="inline-flex w-32 h-12 items-center justify-center text-base font-medium text-center text-white rounded-md bg-blue-600 hover:bg-blue-800"
             >
               Join Live

@@ -9,7 +9,7 @@ const CreateLiveModal = () => {
   const navigate = useNavigate();
 
   const { closeModal } = useBaseModal();
-  const { setTitle, setMode, setRoomSetting, password, setPassword } = useLiveRoomStore();
+  const { setTitle, setMode, setRoomSetting, setLiveRoomMode, password, setPassword } = useLiveRoomStore();
 
   const [selectedRoomSetting, setSelectedRoomSetting] = React.useState<string>("public");
 
@@ -40,6 +40,7 @@ const CreateLiveModal = () => {
     setTitle(selectedTitle);
 
     closeModal();
+    setLiveRoomMode("create");
     navigate(`/live/${USER_ID}`);
   };
 
@@ -134,7 +135,7 @@ const CreateLiveModal = () => {
                 type="submit"
                 className="text-white bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm inline-flex items-center px-5 py-2 text-center"
               >
-                Save
+                Create
               </button>
             </div>
           </form>
