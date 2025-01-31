@@ -1,11 +1,23 @@
 import React from "react";
 import useBaseModal from "../../stores/baseModal";
+import useUserStore from "../../stores/userStore";
 
 const ProfileModal = () => {
   const { closeModal } = useBaseModal();
+  const { nickname, setNickname } = useUserStore();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const newNickname = formData.get("nickname") as string;
+
+    setNickname(newNickname);
+    closeModal();
   };
 
   return (
@@ -37,13 +49,16 @@ const ProfileModal = () => {
               <span className="sr-only">Close modal</span>
             </button>
           </div>
-          <form className="p-4">
+          <form className="p-4" onSubmit={handleSubmit}>
             <div className="px-2">
               <label className="block mb-2 text-sm font-medium text-gray-900">
                 Nickname
               </label>
               <input
+                name="nickname"
+                placeholder={nickname}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5"
+                required
               />
             </div>
             <div className="flex justify-end gap-2 pt-4">
@@ -55,8 +70,7 @@ const ProfileModal = () => {
                 Cancel
               </button>
               <button
-                onClick={closeModal}
-                type="button"
+                type="submit"
                 className="text-white bg-blue-600 hover:bg-blue-800 focus:outline-none font-medium rounded-md text-sm inline-flex items-center px-5 py-2 text-center"
               >
                 Save

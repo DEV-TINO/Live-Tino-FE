@@ -2,14 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import useBaseModal from "../../stores/baseModal";
 import useLiveRoomStore from "../../stores/liveRoomStore";
-
-const USER_ID = "1";
+import useUserStore from "../../stores/userStore";
 
 const CreateLiveModal = () => {
   const navigate = useNavigate();
 
   const { closeModal } = useBaseModal();
   const { setTitle, setMode, setRoomSetting, setLiveRoomMode, password, setPassword } = useLiveRoomStore();
+  const { id } = useUserStore();
 
   const [selectedRoomSetting, setSelectedRoomSetting] = React.useState<string>("public");
 
@@ -41,7 +41,7 @@ const CreateLiveModal = () => {
 
     closeModal();
     setLiveRoomMode("create");
-    navigate(`/live/${USER_ID}`);
+    navigate(`/live/${id}`);
   };
 
   return (

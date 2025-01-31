@@ -5,11 +5,11 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleClickLogo = () => {
-    navigate(`/`);
+    navigate("/");
   };
 
   const handleClickRegister = () => {
-    navigate(`/register`);
+    navigate("/register");
   };
 
   return (

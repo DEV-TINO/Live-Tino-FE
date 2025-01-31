@@ -4,7 +4,7 @@ const RegisterTab = () => {
   const navigate = useNavigate();
 
   const handleClickLogin = () => {
-    navigate(`/login`);
+    navigate("/login");
   };
 
   return (

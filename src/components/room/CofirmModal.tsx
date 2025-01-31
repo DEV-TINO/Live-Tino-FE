@@ -12,7 +12,7 @@ const ConfirmModal = () => {
 
   const handleClickConfirm = () => {
     closeModal();
-    navigate(`/`);
+    navigate("/");
   };
 
   return (

@@ -2,14 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import useBaseModal from "../../stores/baseModal";
 import useLiveRoomStore from "../../stores/liveRoomStore";
-
-const USER_ID = "1";
+import useUserStore from "../../stores/userStore";
 
 const JoinLiveModal = () => {
   const navigate = useNavigate();
 
   const { closeModal } = useBaseModal();
   const { password, roomSetting, setLiveRoomMode } = useLiveRoomStore();
+  const { id } = useUserStore();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -22,7 +22,7 @@ const JoinLiveModal = () => {
     const selectedRoom = formData.get("room") as string;
     const selectedPassword = formData.get("password") as string;
 
-    if (selectedRoom !== USER_ID) {
+    if (selectedRoom !== id) {
       alert("Live Room does not exist");
       return;
     }

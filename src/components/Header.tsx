@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import useBaseModal from "../stores/baseModal";
 import useLiveRoomStore from "../stores/liveRoomStore";
+import useUserStore from "../stores/userStore";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -8,6 +9,7 @@ const Header = () => {
   const isLogin: boolean = true;
   const { openModal } = useBaseModal();
   const { liveRoomMode } = useLiveRoomStore();
+  const { nickname } = useUserStore();
 
   const handleClickLogo = () => {
     navigate("/");
@@ -56,7 +58,7 @@ const Header = () => {
         {isLogin ? (
           <div className="flex gap-1 items-center">
             <div className="h-5 border mr-3 border-gray-300"></div>
-            <div className="font-semibold">김태건</div>
+            <div className="font-semibold">{ nickname }</div>
             <div>님</div>
           </div>
         ) : (
