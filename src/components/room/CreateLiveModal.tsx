@@ -8,8 +8,8 @@ const CreateLiveModal = () => {
   const navigate = useNavigate();
 
   const { closeModal } = useBaseModal();
-  const { setTitle, setMode, setRoomSetting, setLiveRoomMode, password, setPassword } = useLiveRoomStore();
-  const { id } = useUserStore();
+  const { setTitle, setMode, setRoomSetting, setLiveRoomMode, password, setPassword, setMute, mute } = useLiveRoomStore();
+  const { userId } = useUserStore();
 
   const [selectedRoomSetting, setSelectedRoomSetting] = React.useState<string>("public");
 
@@ -28,6 +28,7 @@ const CreateLiveModal = () => {
     const selectedMode = formData.get("mode") as string;
     const selectedTitle = formData.get("title") as string;
     const selectedPassword = formData.get("password") as string;
+    const muteChecked = formData.get("mute") === "on";
 
     setPassword(selectedPassword);
 
@@ -38,10 +39,11 @@ const CreateLiveModal = () => {
     setMode(selectedMode);
     setRoomSetting(selectedRoomSetting);
     setTitle(selectedTitle);
+    setMute(muteChecked);
 
     closeModal();
     setLiveRoomMode("create");
-    navigate(`/live/${id}`);
+    navigate(`/live/${userId}`);
   };
 
   return (
@@ -126,6 +128,17 @@ const CreateLiveModal = () => {
                   />
                 </div>
               )}
+              <div className="col-span-2 flex items-center">
+                <input
+                  type="checkbox"
+                  id="mute"
+                  name="mute"
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+                />
+                <label htmlFor="mute" className="ml-2 text-sm font-medium text-gray-900">
+                  Mute microphone
+                </label>
+              </div>
             </div>
             <div className="flex justify-end gap-2 pt-4">
               <button onClick={closeModal} type="button" className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700">

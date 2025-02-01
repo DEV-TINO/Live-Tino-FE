@@ -9,7 +9,7 @@ const JoinLiveModal = () => {
 
   const { closeModal } = useBaseModal();
   const { password, roomSetting, setLiveRoomMode } = useLiveRoomStore();
-  const { id } = useUserStore();
+  const { userId } = useUserStore();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -22,7 +22,8 @@ const JoinLiveModal = () => {
     const selectedRoom = formData.get("room") as string;
     const selectedPassword = formData.get("password") as string;
 
-    if (selectedRoom !== id) {
+    if (selectedRoom !== userId) {
+      console.log(selectedRoom);
       alert("Live Room does not exist");
       return;
     }
