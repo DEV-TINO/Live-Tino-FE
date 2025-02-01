@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition, faArrowLeft, faArrowRight, faEraser, faPencil } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition, faArrowLeft, faArrowRight, faEraser, faPencil, faMicrophone, faMicrophoneSlash } from "@fortawesome/free-solid-svg-icons";
 import useDrawingStore from "../../stores/drawingStore";
+import useLiveRoomStore from "../../stores/liveRoomStore";
 
 type TToolIcon = {
   icon: IconDefinition;
@@ -16,6 +17,7 @@ const ICONS: TToolIcon[] = [
 
 const DrawingTool = () => {
   const { tool, setTool } = useDrawingStore();
+  const { mute, setMute, liveRoomMode } = useLiveRoomStore();
 
   const getButtonClass = (value: string): string => {
     return tool === value ? "text-gray-950" : "text-gray-400 hover:bg-gray-100";
@@ -27,8 +29,16 @@ const DrawingTool = () => {
     }
   };
 
+  const toggleMute = () => {
+    setMute(!mute);
+  };
+
+  const getMicrophoneIcon = (): IconDefinition => {
+    return mute ? faMicrophoneSlash : faMicrophone;
+  };
+
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center gap-2">
       <div className="rounded bg-white flex gap-2 p-2 z-20">
         {ICONS.map(({ icon, label }, index) => (
           <div
@@ -41,6 +51,13 @@ const DrawingTool = () => {
           </div>
         ))}
       </div>
+      {liveRoomMode === "create" && (
+        <div className="rounded bg-white flex gap-2 p-2 z-20">
+          <div onClick={toggleMute} className="rounded h-8 w-8 flex items-center justify-center cursor-pointer text-gray-400 hover:bg-gray-100">
+            <FontAwesomeIcon icon={getMicrophoneIcon()} size="lg" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
