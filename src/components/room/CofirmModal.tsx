@@ -18,6 +18,7 @@ const ConfirmModal = () => {
   return (
     <div onClick={handleModalClick} className="relative p-4 w-full max-w-sm max-h-full bg-white rounded-md shadow">
       <button
+        type="button"
         onClick={closeModal}
         className="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm w-8 h-8 inline-flex justify-center items-center"
       >

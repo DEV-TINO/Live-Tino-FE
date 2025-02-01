@@ -130,7 +130,8 @@ const RegisterTab = () => {
       </button>
       <div className="text-sm flex gap-3">
         <p className="font-medium text-gray-600">Already have an account?</p>
-        <button 
+        <button
+          type="button"
           onClick={handleClickLogin} 
           className="font-bold text-blue-600 hover:underline"
         >

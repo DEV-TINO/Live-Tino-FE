@@ -32,6 +32,7 @@ const Pagination = () => {
       <ul className="flex items-center -space-x-px h-8 text-sm">
         <li>
           <button
+            type="button"
             disabled={currentPage === 1}
             onClick={() => handlePageChange(currentPage - 1)}
             className={`px-3 h-8 border border-gray-300 rounded-l-md flex items-center justify-center ${getFirstPageClass()}`}
@@ -42,6 +43,7 @@ const Pagination = () => {
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <li key={page}>
             <button
+              type="button"
               onClick={() => handlePageChange(page)}
               className={`px-3 h-8 border border-gray-300 ${getCurrentPageClass(page)}`}
             >
@@ -51,6 +53,7 @@ const Pagination = () => {
         ))}
         <li>
           <button
+            type="button"
             disabled={currentPage === totalPages}
             onClick={() => handlePageChange(currentPage + 1)}
             className={`px-3 h-8 border border-gray-300 rounded-r-md flex items-center justify-center ${getLastPageClass()}`}

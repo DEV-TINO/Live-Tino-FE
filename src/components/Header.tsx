@@ -34,6 +34,7 @@ const Header = () => {
   return (
     <div className="flex justify-between items-center px-10 w-full h-16">
       <button
+        type="button"
         onClick={handleClickLogo}
         className="text-3xl font-semibold text-blue-600 min-w-40 text-start"
       >
@@ -41,17 +42,29 @@ const Header = () => {
       </button>
       <div className="flex gap-5">
         {location.pathname.startsWith("/live/") && liveRoomMode === "create" && (
-          <button onClick={handleClickSetting} className="min-w-14">
+          <button
+            type="button"
+            onClick={handleClickSetting}
+            className="min-w-14"
+          >
             Setting
           </button>
         )}
         {location.pathname.startsWith("/live/") && (
-          <button onClick={handleClickExit} className="min-w-7 bg-red-500 hover:bg-red-600 text-white rounded-md py-1 px-2">
+          <button
+            type="button"
+            onClick={handleClickExit}
+            className="min-w-7 bg-red-500 hover:bg-red-600 text-white rounded-md py-1 px-2"
+          >
             Exit
           </button>
         )}
         {!location.pathname.startsWith("/live/") && (
-          <button className="min-w-16 text-end" onClick={handleClickMyPage}>
+          <button
+            type="button"
+            className="min-w-16 text-end"
+            onClick={handleClickMyPage}
+          >
             MyPage
           </button>
         )}
@@ -63,6 +76,7 @@ const Header = () => {
           </div>
         ) : (
           <button
+            type="button"
             className="min-w-10 text-end"
             onClick={handleClickLoginPage}
           >

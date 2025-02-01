@@ -91,7 +91,11 @@ const JoinLiveModal = () => {
               </div>
             </div>
             <div className="flex justify-end gap-2 pt-4">
-              <button onClick={closeModal} type="button" className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700">
+              <button
+                type="button"
+                onClick={closeModal}
+                className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700"
+              >
                 Cancel
               </button>
               <button

@@ -15,6 +15,7 @@ const ChatBox = () => {
       <div className="border-b flex items-center h-12 px-4 justify-between">
         <div className="font-bold">Chatting</div>
         <button
+          type="button"
           onClick={openModal}
           className="flex gap-1 items-center text-sm hover:bg-gray-100 p-1.5 rounded-md"
         >
