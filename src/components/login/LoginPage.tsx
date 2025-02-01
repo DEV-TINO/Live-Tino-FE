@@ -5,16 +5,17 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleClickLogo = () => {
-    navigate(`/`);
+    navigate("/");
   };
 
   const handleClickRegister = () => {
-    navigate(`/register`);
+    navigate("/register");
   };
 
   return (
     <div className="w-screen pt-52 flex flex-col gap-4 items-center">
-      <button 
+      <button
+        type="button"
         onClick={handleClickLogo} 
         className="text-3xl font-semibold text-blue-600 py-4"
       >
@@ -25,7 +26,8 @@ const LoginPage = () => {
       </div>
       <div className="flex gap-2 w-80 text-sm">
         <p className="text-gray-600">Don’t have an account yet?</p>
-        <button 
+        <button
+          type="button"
           onClick={handleClickRegister} 
           className="text-blue-600 font-bold hover:underline"
         >

@@ -6,24 +6,26 @@ const CheckPage = () => {
   const navigate = useNavigate();
 
   const handleClickLogo = () => {
-    navigate(`/`);
+    navigate("/");
   };
 
   const handleClickBack = () => {
-    navigate('/password');
+    navigate("/password");
   };
 
   return (
     <div className="w-screen pt-56 flex flex-col gap-4 items-center">
       <div className="flex flex-col gap-2">
         <div className="relative w-80">
-          <button 
+          <button
+            type="button"
             onClick={handleClickBack} 
             className="absolute left-0 top-1/2 transform -translate-y-1/2 text-gray-400"
           >
             <FontAwesomeIcon icon={faChevronLeft} size="lg" />
           </button>
-          <button 
+          <button
+            type="button"
             onClick={handleClickLogo} 
             className="text-3xl font-semibold text-blue-600 w-full text-center"
           >

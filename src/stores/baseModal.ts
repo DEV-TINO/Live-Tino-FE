@@ -10,7 +10,7 @@ interface IBaseModal {
 
 const useBaseModal = create<IBaseModal>((set) => ({
   isModalOpen: false,
-  modalType: '',
+  modalType: "",
   setModalType: (type) => set({ modalType: type }),
   openModal: (type) =>
     set({

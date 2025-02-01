@@ -4,7 +4,7 @@ const LoginTab = () => {
   const navigate = useNavigate();
 
   const handleClickPassword = () => {
-    navigate(`/password`);
+    navigate("/password");
   };
 
   return (

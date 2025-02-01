@@ -127,6 +127,7 @@ const VideoArea = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const { videoRef } = useMediaStream();
+  const { title } = useLiveRoomStore();
   const {
     canvasRef,
     drawPoints,
@@ -190,7 +191,7 @@ const VideoArea = () => {
   return (
     <div className="relative">
       <div className="absolute top-0 left-0 w-full h-12 bg-gradient-to-b rounded-t-md from-neutral-950 to-transparent px-4 py-2 text-white font-semibold text-lg z-10">
-        그림 맞추기 하자
+      { title }
       </div>
       <div ref={containerRef} className="aspect-[16/9] relative bg-gray-50">
         <video

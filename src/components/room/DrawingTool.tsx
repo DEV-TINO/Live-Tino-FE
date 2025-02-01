@@ -12,11 +12,11 @@ const DrawingTool = () => {
   const { color, thickness, transparency, setColor, setThickness, setTransparency } = useDrawingStore();
 
   const getColor = (colorOption: string) => {
-    return color === colorOption ? 'border border-gray-800' : 'border';
+    return color === colorOption ? "border border-gray-800" : "border";
   };
 
   const getThicknessBorder = (size: number) => {
-    return thickness === size ? 'border-gray-800' : '';
+    return thickness === size ? "border-gray-800" : "";
   };
 
   const getThicknessBackground = (size: number) => {

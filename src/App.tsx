@@ -33,7 +33,7 @@ const AppContent = () => {
       <div className="pb-4">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/live" element={<LiveRoomPage />} />
+          <Route path="/live/:id" element={<LiveRoomPage />} />
           <Route path="/my" element={<MyPage />} />
           <Route path="/video/:id" element={<PlayPage />} />
           <Route path="/login" element={<LoginPage />} />
