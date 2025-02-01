@@ -23,7 +23,6 @@ const JoinLiveModal = () => {
     const selectedPassword = formData.get("password") as string;
 
     if (selectedRoom !== userId) {
-      console.log(selectedRoom);
       alert("Live Room does not exist");
       return;
     }
