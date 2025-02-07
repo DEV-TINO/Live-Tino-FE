@@ -1,8 +1,24 @@
+import { useEffect } from "react";
 import ProfileTab from "./ProfileTab";
 import VideoTable from "./VideoTable";
 import Pagination from "./Pagination";
+import useBaseModal from "../../stores/baseModal";
 
 const MyPage = () => {
+  const { closeModal } = useBaseModal();
+
+  const handlePopState = () => {
+    closeModal();
+  };
+
+  useEffect(() => {
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  });
+
   return (
     <div className="grid grid-cols-[minmax(24px,_1fr)_minmax(100px,150px)_36px_minmax(400px,_3.5fr)_minmax(24px,_1fr)]">
       <div className="col-start-2 row-start-2">
