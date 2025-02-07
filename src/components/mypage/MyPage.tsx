@@ -3,9 +3,16 @@ import ProfileTab from "./ProfileTab";
 import VideoTable from "./VideoTable";
 import Pagination from "./Pagination";
 import useBaseModal from "../../stores/baseModal";
+import useVideoStore from "../../stores/videoStore";
 
 const MyPage = () => {
   const { closeModal } = useBaseModal();
+
+  const { videos, currentPage, itemsPerPage } = useVideoStore();
+  
+  const totalVideos = videos.length;
+  const startIndex = (currentPage - 1) * itemsPerPage + 1;
+  const endIndex = Math.min(startIndex + itemsPerPage - 1, totalVideos);
 
   const handlePopState = () => {
     closeModal();
@@ -48,8 +55,12 @@ const MyPage = () => {
       </form>
       <div className="col-start-4 row-start-2 flex h-[600px] justify-between flex-col">
         <VideoTable />
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-between items-center">
+          <div className="text-gray-500 w-40">
+            Showing <b>{startIndex}-{endIndex}</b> of <b>{totalVideos}</b>
+          </div>
           <Pagination/>
+          <div className="w-40"></div>
         </div>
       </div>
     </div>
