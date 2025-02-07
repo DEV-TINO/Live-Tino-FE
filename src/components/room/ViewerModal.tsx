@@ -1,8 +1,8 @@
 import React from "react";
-import useViewerModal from "../../stores/viewerModal";
+import useBaseModal from "../../stores/baseModal";
 
 const ViewerModal = () => {
-  const { closeModal } = useViewerModal();
+  const { closeModal } = useBaseModal();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -11,7 +11,7 @@ const ViewerModal = () => {
   return (
     <div
       onClick={handleModalClick}
-      className="absolute top-9 left-0 right-0 bottom-0 flex justify-center z-50 h-96 px-4"
+      className="absolute top-9 left-0 right-0 bottom-0 flex justify-center h-96 px-4 z-50"
     >
       <div className="border relative p-4 w-full max-w-sm max-h-full bg-white rounded-md shadow-xl">
         <button
