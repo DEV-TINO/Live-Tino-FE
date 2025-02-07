@@ -11,8 +11,8 @@ interface ILiveRoomStore {
   setPassword: (password: string) => void;
   liveRoomMode: string;
   setLiveRoomMode: (liveRoomMode: string) => void;
-  mute: boolean;
-  setMute: (mute: boolean) => void;
+  isMute: boolean;
+  setMute: (isMute: boolean) => void;
 }
 
 export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
@@ -26,8 +26,8 @@ export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
   setPassword: (password) => set({ password }),
   liveRoomMode: "",
   setLiveRoomMode: (liveRoomMode) => set({ liveRoomMode }),
-  mute: false,
-  setMute: (mute) => set({ mute }),
+  isMute: false,
+  setMute: (isMute) => set({ isMute }),
 }));
 
 export default useLiveRoomStore;

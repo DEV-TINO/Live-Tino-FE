@@ -8,7 +8,7 @@ const CreateLiveModal = () => {
   const navigate = useNavigate();
 
   const { closeModal } = useBaseModal();
-  const { setTitle, setMode, setRoomSetting, setLiveRoomMode, password, setPassword, setMute, mute } = useLiveRoomStore();
+  const { setTitle, setMode, setRoomSetting, setLiveRoomMode, password, setPassword, setMute } = useLiveRoomStore();
   const { userId } = useUserStore();
 
   const [selectedRoomSetting, setSelectedRoomSetting] = React.useState<string>("public");
