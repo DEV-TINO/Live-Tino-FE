@@ -21,6 +21,7 @@ const MyPage = () => {
   };
 
   useEffect(() => {
+    setSearchQuery("");
     window.addEventListener("popstate", handlePopState);
     return () => {
       window.removeEventListener("popstate", handlePopState);
