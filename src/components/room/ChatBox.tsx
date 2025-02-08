@@ -27,8 +27,8 @@ const ChatBox = () => {
           <div>{viewer}</div>
         </button>
       </div>
-      <div className="overflow-y-auto h-[395px] xl:h-[475px] 2xl:h-[577px] scrollbar-hide">
-        <div className="text-sm py-5 px-4 flex flex-col justify-end gap-2">
+      <div className="overflow-y-auto h-[395px] xl:h-[475px] 2xl:h-[577px] scrollbar-hide flex flex-col-reverse">
+        <div className="text-sm py-5 px-4 flex flex-col gap-2">
           {messages.map((msg) => (
             <div key={msg.id} className="flex gap-2">
               <div className="text-blue-600 font-bold">{msg.username}</div>
