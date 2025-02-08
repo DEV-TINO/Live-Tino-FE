@@ -13,6 +13,8 @@ interface IVideoStore {
   setVideos: (videos: TVideo[]) => void;
   setCurrentPage: (page: number) => void;
   itemsPerPage: number;
+  selectedVideoId: number;
+  setSelectedVideoId: (id: number) => void;
 }
 
 const useVideoStore = create<IVideoStore>((set) => ({
@@ -32,6 +34,8 @@ const useVideoStore = create<IVideoStore>((set) => ({
   setVideos: (videos) => set({ videos }),
   setCurrentPage: (page) => set({ currentPage: page }),
   itemsPerPage: 6,
+  selectedVideoId: 0,
+  setSelectedVideoId: (id) => set({ selectedVideoId: id }),
 }));
 
 export default useVideoStore;

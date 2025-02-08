@@ -24,16 +24,13 @@ const ModalBackground: FC<IModalBackgroundProps> = ({ children }) => {
   }, []);
 
   const getBackgroundClass = () => {
-    if (modalType === "viewer") {
-      return "bg-transparent";
-    }
-    return "bg-black/60";
+    return (modalType === "viewer" || modalType === "selection") ? "bg-transparent" : "bg-black/60";
   };
 
   return (
     <div 
       onClick={closeModal} 
-      className={`w-screen h-screen fixed inset-0 mx-auto ${getBackgroundClass()} z-50 overflow-hidden flex justify-center items-center`}
+      className={`w-screen h-screen fixed inset-0 mx-auto ${getBackgroundClass()} z-20 overflow-hidden flex justify-center items-center`}
     >
       {children}
     </div>

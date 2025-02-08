@@ -2,9 +2,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import useVideoStore from "../../stores/videoStore";
 import { useNavigate } from "react-router-dom";
+import useBaseModal from "../../stores/baseModal";
+import SelectionModal from "./SelectionModal";
 
 const PlayVideoTable = ({ videoId }: { videoId: number }) => {
-  const { videos, currentPage, itemsPerPage } = useVideoStore();
+  const { videos, currentPage, itemsPerPage, selectedVideoId, setSelectedVideoId } = useVideoStore();
+  const { openModal, isModalOpen, modalType } = useBaseModal();
   const navigate = useNavigate();
   const startIndex = (currentPage - 1) * itemsPerPage;
 
@@ -12,6 +15,12 @@ const PlayVideoTable = ({ videoId }: { videoId: number }) => {
 
   const handleClickVideo = (videoId: number) => {
     navigate(`/video/${videoId}`);
+  };
+
+  const handleClickSelection = (event: React.MouseEvent, id: number) => {
+    setSelectedVideoId(id);
+    event.stopPropagation();
+    openModal("selection");
   };
 
   const getVideoTitleClass = (id: number) => {
@@ -32,10 +41,17 @@ const PlayVideoTable = ({ videoId }: { videoId: number }) => {
               {video.duration}
             </div>
           </div>
-          <div className="px-2 w-44">
+          <div className="pl-2 w-44 relative">
             <div className="flex justify-between items-center">
               <div className={`${getVideoTitleClass(video.id)} truncate`}>{video.title}</div>
-              <FontAwesomeIcon icon={faEllipsisVertical} />
+              <div onClick={(event) => handleClickSelection(event, video.id)} className="hover:bg-gray-100 min-w-6 min-h-6 rounded-full flex items-center justify-center">
+                <FontAwesomeIcon icon={faEllipsisVertical} />
+              </div>
+              {modalType === "selection" && isModalOpen && video.id === selectedVideoId && (
+                <div className="absolute top-[-10px] right-[-6px] z-50">
+                  <SelectionModal />
+                </div>
+              )}
             </div>
             <div className="text-sm text-gray-700">{video.date}</div>
           </div>

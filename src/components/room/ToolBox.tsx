@@ -39,7 +39,7 @@ const DrawingTool = () => {
 
   return (
     <div className="w-full flex justify-center gap-2">
-      <div className="rounded bg-white flex gap-2 p-2 z-20">
+      <div className="rounded bg-white flex gap-2 p-2 z-10">
         {ICONS.map(({ icon, label }, index) => (
           <div
             key={index}

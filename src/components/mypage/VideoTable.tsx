@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import useVideoStore from "../../stores/videoStore";
+import useBaseModal from "../../stores/baseModal";
+import SelectionModal from "./SelectionModal";
 
 type TVideo = {
   id: number;
@@ -12,12 +14,19 @@ type TVideo = {
 
 const VideoTable = () => {
   const navigate = useNavigate();
-  const { videos, currentPage, itemsPerPage } = useVideoStore();
+  const { videos, currentPage, itemsPerPage, selectedVideoId, setSelectedVideoId } = useVideoStore();
+  const { openModal,modalType, isModalOpen } = useBaseModal();
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentVideos = videos.slice(startIndex, startIndex + itemsPerPage);
 
   const handleClickPlay = (video: TVideo) => {
     navigate(`/video/${video.id}`);
+  };
+
+  const handleClickSelection = (event: React.MouseEvent, id: number) => {
+    setSelectedVideoId(id);
+    event.stopPropagation();
+    openModal("selection");
   };
 
   return (
@@ -29,9 +38,16 @@ const VideoTable = () => {
               {video.duration}
             </div>
           </div>
-          <div className="flex w-full justify-between pr-2 pt-2 items-center gap-4">
+          <div className="flex w-full justify-between pt-2 items-center gap-4 relative">
             <div className="pl-0.5 truncate">{video.title}</div>
-            <FontAwesomeIcon icon={faEllipsisVertical} />
+            <div onClick={(event) => handleClickSelection(event, video.id)} className="hover:bg-gray-100 min-w-6 min-h-6 rounded-full flex items-center justify-center">
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </div>
+            {modalType === "selection" && isModalOpen && video.id === selectedVideoId && (
+                <div className="absolute top-[-8px] right-[-10px] z-50">
+                  <SelectionModal />
+                </div>
+              )}
           </div>
           <div className="text-sm pl-0.5 text-gray-700">{video.date}</div>
         </div>
