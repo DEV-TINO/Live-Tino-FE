@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { Client } from "@stomp/stompjs";
 import useChatStore from "../../stores/chatStore";
 import useBaseModal from "../../stores/baseModal";
 import ViewerModal from "./ViewerModal";
@@ -8,9 +10,45 @@ import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 const ChatBox = () => {
   const { openModal, isModalOpen, modalType } = useBaseModal();
   const { messages, viewer } = useChatStore();
+  const [client, setClient] = useState<Client | null>(null);
+  const [message, setMessage] = useState("");
 
   const handleClickViewer = () => {
     openModal("viewer");
+  };
+
+  useEffect(() => {
+    const stompClient = new Client({
+      brokerURL: "ws://localhost:8080/stomp/chat",
+      onConnect: () => {
+        console.log("Connected to WebSocket");
+      },
+      onDisconnect: () => console.log("Disconnected"),
+      onStompError: (frame) => console.error("STOMP Error", frame),
+    });
+
+    stompClient.activate();
+    setClient(stompClient);
+
+    return () => {
+      stompClient.deactivate();
+    };
+  }, []);
+
+  const sendMessage = () => {
+    if (client && message.trim()) {
+      const chatMessage = {
+        type: "MESSAGE",
+        roomId: "550e8400-e29b-41d4-a716-446655440000",
+        chatMessage: message,
+        sender: "user1",
+      };
+      client.publish({
+        destination: "/app/chat.message.a5c52903-338c-49dd-859f-dda2a8d609d9",
+        body: JSON.stringify(chatMessage),
+      });
+      setMessage("");
+    }
   };
 
   return (
@@ -42,8 +80,13 @@ const ChatBox = () => {
           <input
             className="w-10/12 bg-transparent focus:outline-none"
             placeholder="Enter Chat"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           />
-          <FontAwesomeIcon icon={faPaperPlane} />
+          <button onClick={sendMessage}>
+            <FontAwesomeIcon icon={faPaperPlane} />
+          </button>
         </div>
       </div>
     </div>
