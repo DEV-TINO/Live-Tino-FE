@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useVideoStore from "../../stores/videoStore";
 import VideoArea from "./VideoArea";
@@ -7,8 +8,12 @@ import IconSearch from "../../icons/IconSearch";
 
 const PlayPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { videos } = useVideoStore();
+  const { videos, searchQuery, setSearchQuery } = useVideoStore();
   const video = videos.find((video) => video.id === Number(id));
+
+  useEffect(() => {
+    setSearchQuery("");
+  }, []);
 
   if (!video) {
     return <div>Cannot find video</div>;
@@ -35,7 +40,7 @@ const PlayPage = () => {
       </div>
       <div></div>
       <div className="flex flex-col items-center h-[672px] justify-between">
-        <form className="col-start-4 w-full mb-4 ml-auto">
+        <form className="col-start-4 w-full mb-4 ml-auto" onSubmit={(e) => e.preventDefault()}>
           <div className="relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <IconSearch />
@@ -45,6 +50,8 @@ const PlayPage = () => {
               id="default-search" 
               className="block w-full p-3 ps-10 h-11 text-sm text-gray-900 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" 
               placeholder="Title" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               required 
             />
             <button 

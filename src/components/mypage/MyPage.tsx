@@ -8,10 +8,11 @@ import IconSearch from "../../icons/IconSearch";
 
 const MyPage = () => {
   const { closeModal } = useBaseModal();
+  const { videos, currentPage, itemsPerPage, searchQuery, setSearchQuery } = useVideoStore();
 
-  const { videos, currentPage, itemsPerPage } = useVideoStore();
-  
-  const totalVideos = videos.length;
+  const filteredVideos = videos.filter((video) => video.title.includes(searchQuery));
+
+  const totalVideos = filteredVideos.length;
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(startIndex + itemsPerPage - 1, totalVideos);
 
@@ -21,18 +22,17 @@ const MyPage = () => {
 
   useEffect(() => {
     window.addEventListener("popstate", handlePopState);
-
     return () => {
       window.removeEventListener("popstate", handlePopState);
     };
-  });
+  }, []);
 
   return (
     <div className="grid grid-cols-[minmax(24px,_1fr)_minmax(100px,150px)_36px_minmax(400px,_3.5fr)_minmax(24px,_1fr)]">
       <div className="col-start-2 row-start-2">
         <ProfileTab />
       </div>
-      <form className="col-start-4 w-64 ml-auto mb-8 mt-2">
+      <form className="col-start-4 w-64 ml-auto mb-8 mt-2" onSubmit={(e) => e.preventDefault()}>
         <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <IconSearch />
@@ -42,6 +42,8 @@ const MyPage = () => {
             id="default-search" 
             className="block w-full p-3 ps-10 h-11 text-sm text-gray-900 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" 
             placeholder="Title" 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             required 
           />
           <button 
@@ -55,9 +57,11 @@ const MyPage = () => {
       <div className="col-start-4 row-start-2 flex h-[600px] justify-between flex-col">
         <VideoTable />
         <div className="w-full flex justify-between items-center">
-          <div className="text-gray-500 w-40">
-            Showing <b>{startIndex}-{endIndex}</b> of <b>{totalVideos}</b>
-          </div>
+          {totalVideos > itemsPerPage && (
+            <div className="text-gray-500 w-40">
+              Showing <b>{startIndex}-{endIndex}</b> of <b>{totalVideos}</b>
+            </div>
+          )}
           <Pagination/>
           <div className="w-40"></div>
         </div>

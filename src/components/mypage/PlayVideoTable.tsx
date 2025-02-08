@@ -6,12 +6,13 @@ import useBaseModal from "../../stores/baseModal";
 import SelectionModal from "./SelectionModal";
 
 const PlayVideoTable = ({ videoId }: { videoId: number }) => {
-  const { videos, currentPage, itemsPerPage, selectedVideoId, setSelectedVideoId } = useVideoStore();
+  const { videos, currentPage, itemsPerPage, searchQuery, selectedVideoId, setSelectedVideoId } = useVideoStore();
   const { openModal, isModalOpen, modalType } = useBaseModal();
   const navigate = useNavigate();
   const startIndex = (currentPage - 1) * itemsPerPage;
 
-  const currentVideos = videos.slice(startIndex, startIndex + itemsPerPage);
+  const filteredVideos = videos.filter((video) => video.title.includes(searchQuery));
+  const currentVideos = filteredVideos.slice(startIndex, startIndex + itemsPerPage);
 
   const handleClickVideo = (videoId: number) => {
     navigate(`/video/${videoId}`);

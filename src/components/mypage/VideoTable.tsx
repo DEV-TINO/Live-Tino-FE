@@ -14,10 +14,12 @@ type TVideo = {
 
 const VideoTable = () => {
   const navigate = useNavigate();
-  const { videos, currentPage, itemsPerPage, selectedVideoId, setSelectedVideoId } = useVideoStore();
-  const { openModal,modalType, isModalOpen } = useBaseModal();
+  const { videos, currentPage, itemsPerPage, searchQuery, selectedVideoId, setSelectedVideoId } = useVideoStore();
+  const { openModal, modalType, isModalOpen } = useBaseModal();
+
+  const filteredVideos = videos.filter((video) => video.title.includes(searchQuery));
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentVideos = videos.slice(startIndex, startIndex + itemsPerPage);
+  const currentVideos = filteredVideos.slice(startIndex, startIndex + itemsPerPage);
 
   const handleClickPlay = (video: TVideo) => {
     navigate(`/video/${video.id}`);
