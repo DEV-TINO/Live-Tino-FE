@@ -1,8 +1,8 @@
 import React from "react";
-import useSelectionModal from "../../stores/selectionModal";
+import useBaseModal from "../../stores/baseModal";
 
 const SelectionModal = () => {
-  const { closeModal } = useSelectionModal();
+  const { closeModal } = useBaseModal();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();

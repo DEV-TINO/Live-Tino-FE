@@ -10,9 +10,13 @@ type TVideo = {
 interface IVideoStore {
   videos: TVideo[];
   currentPage: number;
+  itemsPerPage: number;
+  searchQuery: string;
+  selectedVideoId: number;
   setVideos: (videos: TVideo[]) => void;
   setCurrentPage: (page: number) => void;
-  itemsPerPage: number;
+  setSearchQuery: (query: string) => void;
+  setSelectedVideoId: (id: number) => void;
 }
 
 const useVideoStore = create<IVideoStore>((set) => ({
@@ -29,9 +33,13 @@ const useVideoStore = create<IVideoStore>((set) => ({
     { id: 10, title: "열 번째 동영상", date: "24.11.12", duration: "00:27:12" },
   ],
   currentPage: 1,
+  itemsPerPage: 6,
+  searchQuery: "",
+  selectedVideoId: 0,
   setVideos: (videos) => set({ videos }),
   setCurrentPage: (page) => set({ currentPage: page }),
-  itemsPerPage: 6,
+  setSearchQuery: (query) => set({ searchQuery: query }),
+  setSelectedVideoId: (id) => set({ selectedVideoId: id }),
 }));
 
 export default useVideoStore;
