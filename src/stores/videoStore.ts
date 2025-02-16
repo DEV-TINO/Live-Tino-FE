@@ -34,7 +34,7 @@ const useVideoStore = create<IVideoStore>((set, get) => ({
 
   fetchVideos: async (userId) => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/broadcast/all${userId}`);      
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/broadcast/all/${userId}`);      
       if (response.data.success) {
         const fetchedVideos = response.data.broadcastList.map((video: any) => ({
           id: video.broadcastId,
