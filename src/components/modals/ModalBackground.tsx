@@ -6,7 +6,7 @@ interface IModalBackgroundProps {
 }
 
 const ModalBackground: FC<IModalBackgroundProps> = ({ children }) => {
-  const { closeModal } = useBaseModal();
+  const { closeModal, modalType } = useBaseModal();
 
   const preventScroll = () => {
     document.documentElement.style.overflow = "hidden";
@@ -23,10 +23,14 @@ const ModalBackground: FC<IModalBackgroundProps> = ({ children }) => {
     };
   }, []);
 
+  const getBackgroundClass = () => {
+    return (modalType === "viewer" || modalType === "selection") ? "bg-transparent" : "bg-black/60";
+  };
+
   return (
     <div 
       onClick={closeModal} 
-      className="w-screen h-screen fixed inset-0 mx-auto bg-black/60 z-50 overflow-hidden flex justify-center items-center"
+      className={`w-screen h-screen fixed inset-0 mx-auto ${getBackgroundClass()} z-20 overflow-hidden flex justify-center items-center`}
     >
       {children}
     </div>

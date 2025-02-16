@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import useBaseModal from "../../stores/baseModal";
 import useLiveRoomStore from "../../stores/liveRoomStore";
+import IconXbutton from "../../icons/IconXbutton";
 
 const SettingModal = () => {
   const { closeModal } = useBaseModal();
-  const { mode, setMode, roomSetting, setRoomSetting, password, setPassword } = useLiveRoomStore();
+  const { mode, setMode, roomSetting, setRoomSetting, password, setPassword, updateLive, broadcastId } = useLiveRoomStore();
 
   const [currentUrl, setCurrentUrl] = useState<string>("");
   const [selectedRoomSetting, setSelectedRoomSetting] = useState<string>(roomSetting);
@@ -21,7 +22,7 @@ const SettingModal = () => {
     setSelectedRoomSetting(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -34,14 +35,13 @@ const SettingModal = () => {
       return;
     }
 
-    if (selectedRoomSetting === "public") {
-      setPassword("");
-    }
-
     setMode(selectedMode);
     setRoomSetting(selectedRoomSetting);
 
-    closeModal();
+    const response = await updateLive(broadcastId, selectedRoomSetting, password);
+    if (response) {
+      closeModal();
+    }
   };
 
   const handleShare = () => {
@@ -59,21 +59,7 @@ const SettingModal = () => {
               type="button"
               className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm w-8 h-8 inline-flex justify-center items-center"
             >
-              <svg
-                className="w-3 h-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                />
-              </svg>
+              <IconXbutton />
               <span className="sr-only">Close modal</span>
             </button>
           </div>

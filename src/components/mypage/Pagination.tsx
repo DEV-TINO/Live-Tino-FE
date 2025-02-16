@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const Pagination = () => {
-  const { videos, currentPage, itemsPerPage, setCurrentPage } = useVideoStore();
-  const totalPages = Math.ceil(videos.length / itemsPerPage);
+  const { videos, currentPage, itemsPerPage, setCurrentPage, searchQuery } = useVideoStore();
+
+  const filteredVideos = videos.filter((video) => video.title.includes(searchQuery));
+  const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
 
   if (totalPages <= 1) return null;
 
@@ -12,20 +14,9 @@ const Pagination = () => {
     setCurrentPage(page);
   };
 
-  const getFirstPageClass = () => {
-    if (currentPage === 1) return "text-gray-300";
-    return "text-gray-500 hover:text-gray-700";
-  };
-
-  const getLastPageClass = () => {
-    if (currentPage === totalPages) return "text-gray-300";
-    return "text-gray-500 hover:text-gray-700";
-  };
-
-  const getCurrentPageClass = (page: number) => {
-    if (currentPage === page) return "text-white bg-blue-600";
-    return "text-gray-500 hover:text-gray-700";
-  };
+  const getFirstPageClass = () => (currentPage === 1 ? "text-gray-300" : "text-gray-500 hover:text-gray-700");
+  const getLastPageClass = () => (currentPage === totalPages ? "text-gray-300" : "text-gray-500 hover:text-gray-700");
+  const getCurrentPageClass = (page: number) => (currentPage === page ? "text-white bg-blue-600" : "text-gray-500 hover:text-gray-700");
 
   return (
     <nav aria-label="Page navigation">

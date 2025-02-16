@@ -3,38 +3,42 @@ import { useNavigate } from "react-router-dom";
 import useBaseModal from "../../stores/baseModal";
 import useLiveRoomStore from "../../stores/liveRoomStore";
 import useUserStore from "../../stores/userStore";
+import IconXbutton from "../../icons/IconXbutton";
+import useViewerModal from "../../stores/viewerModal";
 
 const JoinLiveModal = () => {
   const navigate = useNavigate();
 
   const { closeModal } = useBaseModal();
-  const { password, roomSetting, setLiveRoomMode } = useLiveRoomStore();
-  const { userId } = useUserStore();
+  const { password, roomSetting, joinBroadcast, setLiveRoomMode } = useLiveRoomStore();
+  const { nickname } = useUserStore();
+  const { setStreamerId } = useViewerModal();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     const selectedRoom = formData.get("room") as string;
     const selectedPassword = formData.get("password") as string;
 
-    if (selectedRoom !== userId) {
-      alert("Live Room does not exist");
-      return;
-    }
-
     if ((roomSetting === "private") && (selectedPassword !== password)) {
       alert("Incorrect password");
       return;
     }
 
-    closeModal();
-    setLiveRoomMode("join");
-    navigate(`/live/${selectedRoom}`);
+    const response = await joinBroadcast(selectedRoom, nickname);
+    if (response) {
+      closeModal();
+      setLiveRoomMode("join");
+      navigate(`/live/${selectedRoom}`);
+      setStreamerId(selectedRoom);
+    } else {
+      alert("Live Room Error Occur");
+    }
   };
 
   return (
@@ -48,21 +52,7 @@ const JoinLiveModal = () => {
               type="button"
               className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm w-8 h-8 inline-flex justify-center items-center"
             >
-              <svg
-                className="w-3 h-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                />
-              </svg>
+              <IconXbutton />
             </button>
           </div>
           <form onSubmit={handleSubmit} className="p-4">
