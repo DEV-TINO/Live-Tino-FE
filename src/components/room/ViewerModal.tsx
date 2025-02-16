@@ -1,9 +1,17 @@
 import React from "react";
 import useBaseModal from "../../stores/baseModal";
+import useViewerModal from "../../stores/viewerModal";
 import IconXbutton from "../../icons/IconXbutton";
 
 const ViewerModal = () => {
   const { closeModal } = useBaseModal();
+  const { participantList, fetchParticipants, streamerId } = useViewerModal();
+
+  React.useEffect(() => {
+    if (streamerId) {
+      fetchParticipants(streamerId);
+    }
+  }, [streamerId, fetchParticipants]);
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -25,12 +33,16 @@ const ViewerModal = () => {
         </button>
         <div className="font-bold pb-2">Viewer</div>
         <div className="flex flex-col gap-2 overflow-y-auto h-80 scrollbar-hide pb-2">
-          {Array.from({ length: 12 }).map((_, index) => (
-            <div key={index} className="flex gap-1 items-end">
-              <div className="text-blue-600">hmyang</div>
-              <div className="text-sm text-gray-400">(hmyang0329)</div>
-            </div>
-          ))}
+          {participantList.length > 0 ? (
+            participantList.map((participant) => (
+              <div key={participant.userId} className="flex gap-1 items-end">
+                <div className="text-blue-600">{participant.nickname}</div>
+                <div className="text-sm text-gray-400">({participant.userId})</div>
+              </div>
+            ))
+          ) : (
+            <div className="text-gray-500 text-center">No participants</div>
+          )}
         </div>
       </div>
     </div>
