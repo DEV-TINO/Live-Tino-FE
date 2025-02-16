@@ -6,12 +6,14 @@ import ViewerModal from "./ViewerModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+import useViewerModal from "../../stores/viewerModal";
 
 const ChatBox = () => {
   const { openModal, isModalOpen, modalType } = useBaseModal();
-  const { messages, viewer } = useChatStore();
+  const { messages } = useChatStore();
   const [client, setClient] = useState<Client | null>(null);
   const [message, setMessage] = useState("");
+  const { viewer } = useViewerModal();
 
   const handleClickViewer = () => {
     openModal("viewer");
