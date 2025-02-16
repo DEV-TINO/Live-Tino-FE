@@ -4,13 +4,15 @@ import useBaseModal from "../../stores/baseModal";
 import useLiveRoomStore from "../../stores/liveRoomStore";
 import useUserStore from "../../stores/userStore";
 import IconXbutton from "../../icons/IconXbutton";
+import useViewerModal from "../../stores/viewerModal";
 
 const CreateLiveModal = () => {
   const navigate = useNavigate();
 
   const { closeModal } = useBaseModal();
-  const { setTitle, setMode, setRoomSetting, setLiveRoomMode, password, setPassword, setMute } = useLiveRoomStore();
-  const { userId } = useUserStore();
+  const { setTitle, setMode, setRoomSetting, setLiveRoomMode, password, setPassword, setMute, createLive } = useLiveRoomStore();
+  const { userId, id } = useUserStore();
+  const { setStreamerId } = useViewerModal();
 
   const [selectedRoomSetting, setSelectedRoomSetting] = React.useState<string>("public");
 
@@ -22,7 +24,7 @@ const CreateLiveModal = () => {
     setSelectedRoomSetting(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -42,9 +44,15 @@ const CreateLiveModal = () => {
     setTitle(selectedTitle);
     setMute(muteChecked);
 
-    closeModal();
-    setLiveRoomMode("create");
-    navigate(`/live/${userId}`);
+    const response = await createLive(userId, selectedTitle, selectedRoomSetting, selectedPassword);
+    if (response) {
+      closeModal();
+      setLiveRoomMode("create");
+      navigate(`/live/${userId}`);
+      setStreamerId(id);
+    } else {
+      alert("Create Live Error Occur");
+    }
   };
 
   return (

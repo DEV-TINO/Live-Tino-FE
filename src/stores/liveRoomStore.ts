@@ -15,6 +15,7 @@ interface ILiveRoomStore {
   isMute: boolean;
   setMute: (isMute: boolean) => void;
   joinBroadcast: (userId:string, nickname:string) => Promise<boolean>;
+  createLive: (userId: string, title: string, roomSetting: string, password: string) => Promise<boolean>;
 }
 
 export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
@@ -50,6 +51,26 @@ export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
     }
   },
 
+  createLive: async (userId, title, roomSetting, password) => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/broadcast`, {
+        userId,
+        title,
+        roomSetting: roomSetting === "public" ? "0" : "1",
+        broadcastPassword: roomSetting === "private" ? password : "",
+      });
+
+      if (response.data.success) {
+        return true;
+      } else {
+        console.error("Fail to Create Live: ", response.data.message);
+        return false;
+      }
+    } catch (error) {
+      console.error("Fail to Create Live: ", error);
+      return false;
+    }
+  },
 }));
 
 export default useLiveRoomStore;
