@@ -4,38 +4,41 @@ import useBaseModal from "../../stores/baseModal";
 import useLiveRoomStore from "../../stores/liveRoomStore";
 import useUserStore from "../../stores/userStore";
 import IconXbutton from "../../icons/IconXbutton";
+import useViewerModal from "../../stores/viewerModal";
 
 const JoinLiveModal = () => {
   const navigate = useNavigate();
 
   const { closeModal } = useBaseModal();
-  const { password, roomSetting, setLiveRoomMode } = useLiveRoomStore();
-  const { userId } = useUserStore();
+  const { password, roomSetting, joinBroadcast, setLiveRoomMode } = useLiveRoomStore();
+  const { nickname } = useUserStore();
+  const { setStreamerId } = useViewerModal();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     const selectedRoom = formData.get("room") as string;
     const selectedPassword = formData.get("password") as string;
 
-    if (selectedRoom !== userId) {
-      alert("Live Room does not exist");
-      return;
-    }
-
     if ((roomSetting === "private") && (selectedPassword !== password)) {
       alert("Incorrect password");
       return;
     }
 
-    closeModal();
-    setLiveRoomMode("join");
-    navigate(`/live/${selectedRoom}`);
+    const response = await joinBroadcast(selectedRoom, nickname);
+    if (response) {
+      closeModal();
+      setLiveRoomMode("join");
+      navigate(`/live/${selectedRoom}`);
+      setStreamerId(selectedRoom);
+    } else {
+      alert("Live Room Error Occur");
+    }
   };
 
   return (
