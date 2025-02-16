@@ -9,7 +9,7 @@ import IconSearch from "../../icons/IconSearch";
 const PlayPage = () => {
   const { id } = useParams<{ id: string }>();
   const { videos, searchQuery, setSearchQuery } = useVideoStore();
-  const video = videos.find((video) => video.id === Number(id));
+  const video = videos.find((video) => video.id === String(id));
 
   useEffect(() => {
     setSearchQuery("");
@@ -23,7 +23,7 @@ const PlayPage = () => {
     <div className="relative grid grid-cols-[minmax(24px,_1fr)_minmax(512px,992px)_24px_320px_minmax(24px,_1fr)]">
       <div></div>
       <div className="flex flex-col gap-2">
-        <VideoArea title={video.title} />
+        <VideoArea title={video.title} videoId={video.id} />
         <div className="text-2xl font-semibold py-4 pr-2 flex flex-col gap-1">
           <div>{video.title}</div>
           <div className="flex gap-4 text-gray-600">

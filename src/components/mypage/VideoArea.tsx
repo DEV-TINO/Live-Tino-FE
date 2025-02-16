@@ -7,11 +7,12 @@ import useVideoStore from "../../stores/videoStore";
 
 interface IVideoAreaProps {
   title: string;
+  videoId: string;
 }
 
-const VIDEOAREA = -1;
+const VIDEOAREA = "";
 
-const VideoArea: React.FC<IVideoAreaProps> = ({ title }) => {
+const VideoArea: React.FC<IVideoAreaProps> = ({ title, videoId }) => {
   const { selectedVideoId, setSelectedVideoId } = useVideoStore();
   const { openModal, isModalOpen, modalType } = useBaseModal();
 
@@ -27,7 +28,7 @@ const VideoArea: React.FC<IVideoAreaProps> = ({ title }) => {
   return (
     <div className="relative group z-20">
       <div className={`flex text-white justify-between text-lg items-center ${getOpacity()} group-hover:opacity-60 absolute top-0 left-0 w-full h-12 bg-gradient-to-b from-neutral-950 to-transparent px-4 rounded-t-md`}>
-        {modalType === "selection" && isModalOpen && selectedVideoId === VIDEOAREA && <SelectionModal />}
+        {modalType === "selection" && isModalOpen && selectedVideoId === VIDEOAREA && <SelectionModal videoId={videoId}/>}
         <div className="font-semibold">{title}</div>
         <div onClick={handleClickSelection} className="h-6 w-6 flex justify-center items-center hover:bg-black/10 rounded-full">
           <FontAwesomeIcon icon={faEllipsisVertical} />

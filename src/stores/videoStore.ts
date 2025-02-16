@@ -50,6 +50,21 @@ const useVideoStore = create<IVideoStore>((set, get) => ({
     }
   },
 
+  deleteVideo: async (videoId, userId) => {
+    try {
+      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/broadcast`, {
+        data: { broadcastId: videoId },
+      });
+
+      if (response.data.success) {
+        await get().fetchVideos(userId)
+      } else {
+        console.error("Remove Video Fail: ", response.data.message);
+      }
+    } catch (error) {
+      console.error("Remove Video Fail: ", error);
+    }
+  },
 }));
 
 export default useVideoStore;

@@ -50,7 +50,7 @@ const PlayVideoTable = ({ videoId }: { videoId: number }) => {
               </div>
               {modalType === "selection" && isModalOpen && video.id === selectedVideoId && (
                 <div className="absolute top-[-10px] right-[-6px] z-50">
-                  <SelectionModal />
+                  <SelectionModal videoId={video.id} />
                 </div>
               )}
             </div>
