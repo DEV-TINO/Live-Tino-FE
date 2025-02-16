@@ -5,7 +5,7 @@ import IconXbutton from "../../icons/IconXbutton";
 
 const SettingModal = () => {
   const { closeModal } = useBaseModal();
-  const { mode, setMode, roomSetting, setRoomSetting, password, setPassword } = useLiveRoomStore();
+  const { mode, setMode, roomSetting, setRoomSetting, password, setPassword, updateLive, broadcastId } = useLiveRoomStore();
 
   const [currentUrl, setCurrentUrl] = useState<string>("");
   const [selectedRoomSetting, setSelectedRoomSetting] = useState<string>(roomSetting);
@@ -22,7 +22,7 @@ const SettingModal = () => {
     setSelectedRoomSetting(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -35,14 +35,13 @@ const SettingModal = () => {
       return;
     }
 
-    if (selectedRoomSetting === "public") {
-      setPassword("");
-    }
-
     setMode(selectedMode);
     setRoomSetting(selectedRoomSetting);
 
-    closeModal();
+    const response = await updateLive(broadcastId, selectedRoomSetting, password);
+    if (response) {
+      closeModal();
+    }
   };
 
   const handleShare = () => {

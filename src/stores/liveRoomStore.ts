@@ -14,8 +14,11 @@ interface ILiveRoomStore {
   setLiveRoomMode: (liveRoomMode: string) => void;
   isMute: boolean;
   setMute: (isMute: boolean) => void;
-  joinBroadcast: (userId:string, nickname:string) => Promise<boolean>;
+  broadcastId: string;
+  setBroadcastId: (broadcastId: string) => void;
+  joinBroadcast: (userId: string, nickname: string) => Promise<boolean>;
   createLive: (userId: string, title: string, roomSetting: string, password: string) => Promise<boolean>;
+  updateLive: (broadcastId: string, roomSetting: string, password: string) => Promise<boolean>;
 }
 
 export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
@@ -31,6 +34,8 @@ export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
   setLiveRoomMode: (liveRoomMode) => set({ liveRoomMode }),
   isMute: false,
   setMute: (isMute) => set({ isMute }),
+  broadcastId: "",
+  setBroadcastId: (broadcastId) => set({ broadcastId }),
 
   joinBroadcast: async (userId, nickname) => {
     try {
@@ -68,6 +73,26 @@ export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
       }
     } catch (error) {
       console.error("Fail to Create Live: ", error);
+      return false;
+    }
+  },
+
+  updateLive: async (broadcastId, roomSetting, password) => {
+    try {
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/broadcast`, {
+        broadcastId,
+        roomSetting: roomSetting === "public" ? "0" : "1",
+        broadcastPassword: roomSetting === "private" ? password : "",
+      });
+
+      if (response.data.success) {
+        return true;
+      } else {
+        console.error("Fail to Update Live: ", response.data.message);
+        return false;
+      }
+    } catch (error) {
+      console.error("Fail to Update Live: ", error);
       return false;
     }
   },
