@@ -1,10 +1,12 @@
 import { create } from "zustand";
+import axios from "axios";
 
 type TVideo = {
-  id: number;
+  id: string;
   title: string;
   date: string;
   duration: string;
+  thumbnail: string;
 };
 
 interface IVideoStore {
@@ -12,34 +14,42 @@ interface IVideoStore {
   currentPage: number;
   itemsPerPage: number;
   searchQuery: string;
-  selectedVideoId: number;
-  setVideos: (videos: TVideo[]) => void;
+  selectedVideoId: string;
+  fetchVideos: (userId: string) => Promise<void>;
   setCurrentPage: (page: number) => void;
   setSearchQuery: (query: string) => void;
-  setSelectedVideoId: (id: number) => void;
+  setSelectedVideoId: (id: string) => void;
+  deleteVideo: (videoId: string, userId:string) => Promise<void>;
 }
 
-const useVideoStore = create<IVideoStore>((set) => ({
-  videos: [
-    { id: 1, title: "첫 번째 동영상", date: "24.11.12", duration: "00:27:12" },
-    { id: 2, title: "두 번째 동영상", date: "24.11.13", duration: "00:30:45" },
-    { id: 3, title: "세 번째 동영상", date: "24.11.14", duration: "00:25:38" },
-    { id: 4, title: "네 번째 동영상", date: "24.11.12", duration: "00:27:12" },
-    { id: 5, title: "다섯 번째 동영상", date: "24.11.13", duration: "00:30:45" },
-    { id: 6, title: "여섯 번째 동영상", date: "24.11.14", duration: "00:25:38" },
-    { id: 7, title: "일곱 번째 동영상", date: "24.11.12", duration: "00:27:12" },
-    { id: 8, title: "아기다리 고기다리던 제목이 엄청 긴 여덟 번째 동영상", date: "24.11.13", duration: "00:30:45" },
-    { id: 9, title: "아홉 번째 동영상", date: "24.11.14", duration: "00:25:38" },
-    { id: 10, title: "열 번째 동영상", date: "24.11.12", duration: "00:27:12" },
-  ],
+const useVideoStore = create<IVideoStore>((set, get) => ({
+  videos: [],
   currentPage: 1,
   itemsPerPage: 6,
   searchQuery: "",
-  selectedVideoId: 0,
-  setVideos: (videos) => set({ videos }),
+  selectedVideoId: "",
   setCurrentPage: (page) => set({ currentPage: page }),
   setSearchQuery: (query) => set({ searchQuery: query }),
   setSelectedVideoId: (id) => set({ selectedVideoId: id }),
+
+  fetchVideos: async (userId) => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/broadcast/all${userId}`);      
+      if (response.data.success) {
+        const fetchedVideos = response.data.broadcastList.map((video: any) => ({
+          id: video.broadcastId,
+          title: video.title,
+          date: video.saveDate,
+          duration: video.totalTime,
+          thumbnail: video.thumbnail || "",
+        }));
+        set({ videos: fetchedVideos });
+      }
+    } catch (error) {
+      console.error("Failed to fetch videos: ", error);
+    }
+  },
+
 }));
 
 export default useVideoStore;
