@@ -48,9 +48,9 @@ const RegisterTab = () => {
         </label>
         <input 
           name="name"
-          className="border border-gray-300 text-gray-900 text-sm rounded-md focus:border-blue-500 block w-full p-2.5" 
-          placeholder="Name" 
-          required 
+          className="border border-gray-300 text-gray-900 text-sm rounded-md focus:border-blue-500 block w-full p-2.5"
+          placeholder="Name"
+          required
         />
       </div>
 
@@ -61,13 +61,13 @@ const RegisterTab = () => {
         <div className="flex gap-2">
           <input 
             name="username"
-            className="border border-gray-300 text-gray-900 text-sm rounded-md focus:border-blue-500 block w-full p-2.5" 
-            placeholder="Username" 
-            required 
+            className="border border-gray-300 text-gray-900 text-sm rounded-md focus:border-blue-500 block w-full p-2.5"
+            placeholder="Username"
             onChange={id}
+            required
           />
           <button 
-            type="button" 
+            type="button"
             onClick={checkDuplicateId}
             className="text-blue-600 border border-blue-600 w-36 hover:bg-blue-50 focus:outline-none font-medium rounded-md text-sm h-[42px]"
           >
@@ -81,9 +81,9 @@ const RegisterTab = () => {
         </label>
         <input 
           name="password"
-          className="border border-gray-300 text-gray-900 text-sm rounded-md focus:border-blue-500 block w-full p-2.5" 
-          placeholder="Password" 
-          required 
+          className="border border-gray-300 text-gray-900 text-sm rounded-md focus:border-blue-500 block w-full p-2.5"
+          placeholder="Password"
+          required
         />
       </div>
       <div className="mb-2">
@@ -95,7 +95,7 @@ const RegisterTab = () => {
             name="phone"
             className="border border-gray-300 text-gray-900 text-sm rounded-md focus:border-blue-500 block w-full p-2.5 mb-1"
             placeholder="010-XXXX-XXXX"
-            required 
+            required
           />
           <button 
             type="button"
@@ -107,20 +107,20 @@ const RegisterTab = () => {
       </div>
       <div className="mb-6">
         <label 
-          htmlFor="checkNum" 
+          htmlFor="checkNum"
           className="block mb-1 text-sm font-medium px-0.5 text-gray-900"
         >
           OTP Verification
         </label>
         <div className="flex gap-2">
           <input 
-            id="checkNum" 
-            className="border border-gray-300 text-gray-900 text-sm rounded-md focus:border-blue-500 block w-full p-2.5 mb-1" 
-            placeholder="OTP" 
-            required 
+            id="checkNum"
+            className="border border-gray-300 text-gray-900 text-sm rounded-md focus:border-blue-500 block w-full p-2.5 mb-1"
+            placeholder="OTP"
+            required
           />
           <button 
-            type="button" 
+            type="button"
             className="text-blue-600 border border-blue-600 w-36 hover:bg-blue-50 focus:outline-none font-medium rounded-md text-sm h-[42px]"
           >
             Check
@@ -128,7 +128,7 @@ const RegisterTab = () => {
         </div>
       </div>
       <button 
-        type="submit" 
+        type="submit"
         className={`w-full text-white focus:outline-none font-semibold rounded-md py-2.5 ${getSubmitButtonClass()}`}
         disabled={!isIdValid || isSubmitting}
       >
@@ -138,7 +138,7 @@ const RegisterTab = () => {
         <p className="font-medium text-gray-600">Already have an account?</p>
         <button
           type="button"
-          onClick={handleClickLogin} 
+          onClick={handleClickLogin}
           className="font-bold text-blue-600 hover:underline"
         >
           Sign In
