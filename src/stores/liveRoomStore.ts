@@ -66,6 +66,8 @@ export const useLiveRoomStore = create<ILiveRoomStore>((set, get) => ({
         broadcastPassword: roomSetting === "private" ? password : "",
       });
 
+      set({ broadcastId:response.data.broadcastId });
+
       if (response.data.success) {
         return true;
       } else {
