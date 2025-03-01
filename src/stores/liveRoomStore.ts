@@ -19,9 +19,10 @@ interface ILiveRoomStore {
   joinBroadcast: (userId: string, nickname: string) => Promise<boolean>;
   createLive: (userId: string, title: string, roomSetting: string, password: string) => Promise<boolean>;
   updateLive: (broadcastId: string, roomSetting: string, password: string) => Promise<boolean>;
+  exitLive: () => Promise<boolean>;
 }
 
-export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
+export const useLiveRoomStore = create<ILiveRoomStore>((set, get) => ({
   title: "",
   setTitle: (title) => set({ title }),
   mode: "board",
@@ -93,6 +94,25 @@ export const useLiveRoomStore = create<ILiveRoomStore>((set) => ({
       }
     } catch (error) {
       console.error("Fail to Update Live: ", error);
+      return false;
+    }
+  },
+
+  exitLive: async () => {
+    const { broadcastId } = get();
+    try {
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/broadcast/quit`, {
+        broadcastId,
+      });
+
+      if (response.data.success) {
+        return true;
+      } else {
+        console.log("Fail to Exit Live: ", response.data.message);
+        return false;
+      }
+    } catch (error) {
+      console.error("Fail to Exit Live: ", error);
       return false;
     }
   },

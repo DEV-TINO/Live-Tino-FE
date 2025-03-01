@@ -3,17 +3,21 @@ import useBaseModal from "../../stores/baseModal";
 import { useNavigate } from "react-router-dom";
 import IconXbutton from "../../icons/IconXbutton";
 import IconConfirm from "../../icons/IconConfirm";
+import useLiveRoomStore from "../../stores/liveRoomStore";
 
 const ConfirmModal = () => {
   const { closeModal } = useBaseModal();
+  const { exitLive } = useLiveRoomStore();
   const navigate = useNavigate();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
-  const handleClickConfirm = () => {
-    closeModal();
+  const handleClickConfirm = async () => {
+    const response = await exitLive();
+    if (response) closeModal();
+    else alert("Fail to exit live");
     navigate("/");
   };
 
