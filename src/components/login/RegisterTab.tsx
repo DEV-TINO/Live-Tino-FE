@@ -15,6 +15,10 @@ const RegisterTab = () => {
       : "bg-blue-600 hover:bg-blue-800";
   };
 
+  const id = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLoginId(event.target.value);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -60,6 +64,7 @@ const RegisterTab = () => {
             className="border border-gray-300 text-gray-900 text-sm rounded-md focus:border-blue-500 block w-full p-2.5" 
             placeholder="Username" 
             required 
+            onChange={id}
           />
           <button 
             type="button" 
