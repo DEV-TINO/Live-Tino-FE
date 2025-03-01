@@ -9,10 +9,12 @@ interface IUserStore {
   id: string;
   setId: (id: string) => void;
   login: (loginId: string, password: string) => Promise<boolean>;
+  logout: () => Promise<boolean>;
   isLogin: boolean;
+  accessToken: string;
 }
 
-const useUserStore = create<IUserStore>((set) => ({
+const useUserStore = create<IUserStore>((set, get) => ({
   userId: "",
   setUserId: (userId) => set({ userId }),
   nickname: "",
@@ -20,6 +22,7 @@ const useUserStore = create<IUserStore>((set) => ({
   id: "",
   setId: (id) => set({id}),
   isLogin: false,
+  accessToken: "",
   login: async (loginId, password) => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, {
@@ -30,8 +33,7 @@ const useUserStore = create<IUserStore>((set) => ({
       const userData = response.data;
 
       if (userData.success) {
-        set({ id: loginId, nickname: userData.userInfo.userName, userId: userData.userInfo.userId, isLogin: true });
-
+        set({ id: loginId, nickname: userData.userInfo.userName, userId: userData.userInfo.userId, isLogin: true, accessToken:userData.userInfo.cookies[0].value });
         return true;
       }
       return false;
@@ -40,6 +42,11 @@ const useUserStore = create<IUserStore>((set) => ({
       return false;
     }
   },
+
+  logout: async () => {
+    set({ id: "", nickname: "", userId: "", isLogin: false });
+    return true;
+  }
 }));
 
 export default useUserStore;

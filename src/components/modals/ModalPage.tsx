@@ -5,6 +5,7 @@ import SettingModal from "../room/SettingModal";
 import ProfileModal from "../mypage/ProfileModal";
 import CreateLiveModal from "../room/CreateLiveModal";
 import JoinLiveModal from "../room/JoinLiveModal";
+import LoginConfirmModal from "../login/ConfirmModal";
 
 const ModalPage = () => {
   const { isModalOpen, modalType } = useBaseModal();
@@ -18,6 +19,7 @@ const ModalPage = () => {
       {modalType === "profile" && <ProfileModal />}
       {modalType === "create" && <CreateLiveModal />}
       {modalType === "join" && <JoinLiveModal />}
+      {modalType === "logout" && <LoginConfirmModal />}
     </ModalBackground>
   );
 };

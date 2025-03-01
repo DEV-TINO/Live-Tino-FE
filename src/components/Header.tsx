@@ -6,10 +6,9 @@ import useUserStore from "../stores/userStore";
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const isLogin: boolean = true;
   const { openModal } = useBaseModal();
   const { liveRoomMode } = useLiveRoomStore();
-  const { nickname } = useUserStore();
+  const { nickname, isLogin } = useUserStore();
 
   const handleClickLogo = () => {
     navigate("/");
@@ -29,6 +28,10 @@ const Header = () => {
 
   const handleClickSetting = () => {
     openModal("setting");
+  };
+
+  const handleClickUser = () => {
+    openModal("logout");
   };
 
   return (
@@ -71,8 +74,13 @@ const Header = () => {
         {isLogin ? (
           <div className="flex gap-1 items-center">
             <div className="h-5 border mr-3 border-gray-300"></div>
-            <div className="font-semibold">{ nickname }</div>
-            <div>님</div>
+            <button
+              type="button"
+              className="flex gap-1"
+              onClick={handleClickUser}>
+              <div className="font-semibold">{ nickname }</div>
+              <div>님</div>
+            </button>
           </div>
         ) : (
           <button
