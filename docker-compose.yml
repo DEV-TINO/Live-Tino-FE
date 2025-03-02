@@ -1,0 +1,12 @@
+services:
+  server:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: live-tino-fe
+    volumes:
+      - .:/code
+    ports:
+      - 3000:3000
+    restart: always

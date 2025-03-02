@@ -17,7 +17,7 @@ const ICONS: TToolIcon[] = [
 
 const DrawingTool = () => {
   const { tool, setTool } = useDrawingStore();
-  const { mute, setMute, liveRoomMode } = useLiveRoomStore();
+  const { isMute, setMute, liveRoomMode } = useLiveRoomStore();
 
   const getButtonClass = (value: string): string => {
     return tool === value ? "text-gray-950" : "text-gray-400 hover:bg-gray-100";
@@ -30,16 +30,16 @@ const DrawingTool = () => {
   };
 
   const toggleMute = () => {
-    setMute(!mute);
+    setMute(!isMute);
   };
 
   const getMicrophoneIcon = (): IconDefinition => {
-    return mute ? faMicrophoneSlash : faMicrophone;
+    return isMute ? faMicrophoneSlash : faMicrophone;
   };
 
   return (
     <div className="w-full flex justify-center gap-2">
-      <div className="rounded bg-white flex gap-2 p-2 z-20">
+      <div className="rounded bg-white flex gap-2 p-2 z-10">
         {ICONS.map(({ icon, label }, index) => (
           <div
             key={index}

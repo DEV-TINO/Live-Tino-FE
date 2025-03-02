@@ -1,24 +1,21 @@
 import React from "react";
 import useBaseModal from "../../stores/baseModal";
-import { useNavigate } from "react-router-dom";
 import IconXbutton from "../../icons/IconXbutton";
 import IconConfirm from "../../icons/IconConfirm";
-import useLiveRoomStore from "../../stores/liveRoomStore";
+import useUserStore from "../../stores/userStore";
 
-const ConfirmModal = () => {
+const LoginConfirmModal = () => {
   const { closeModal } = useBaseModal();
-  const { exitLive } = useLiveRoomStore();
-  const navigate = useNavigate();
+  const { logout } = useUserStore();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
   const handleClickConfirm = async () => {
-    const response = await exitLive();
+    const response = await logout();
     if (response) closeModal();
-    else alert("Fail to exit live");
-    navigate("/");
+    else alert("Fail to logout");
   };
 
   return (
@@ -34,7 +31,7 @@ const ConfirmModal = () => {
       <div className="p-4 text-center">
         <IconConfirm />
         <h3 className="mb-5 text-lg font-normal text-gray-500">
-          Are you sure you want to exit<br/>the live room?
+          Are you sure you want to logout?
         </h3>
         <div className="flex justify-center gap-3">
           <button
@@ -57,4 +54,4 @@ const ConfirmModal = () => {
   );
 };
 
-export default ConfirmModal;
+export default LoginConfirmModal;

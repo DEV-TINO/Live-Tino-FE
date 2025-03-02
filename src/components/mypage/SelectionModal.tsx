@@ -1,11 +1,24 @@
 import React from "react";
-import useSelectionModal from "../../stores/selectionModal";
+import useBaseModal from "../../stores/baseModal";
+import useVideoStore from "../../stores/videoStore";
+import useUserStore from "../../stores/userStore";
 
-const SelectionModal = () => {
-  const { closeModal } = useSelectionModal();
+interface ISelectionModalProps {
+  videoId: string;
+}
+
+const SelectionModal: React.FC<ISelectionModalProps> = ({ videoId }) => {
+  const { closeModal } = useBaseModal();
+  const { deleteVideo } = useVideoStore();
+  const { userId } = useUserStore();
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+  };
+
+  const handleClickDelete = async () => {
+    await deleteVideo(videoId, userId);
+    closeModal();
   };
 
   return (
@@ -20,7 +33,7 @@ const SelectionModal = () => {
         </button>
         <button
           type="button"
-          onClick={closeModal}
+          onClick={handleClickDelete}
           className="hover:bg-gray-100 w-full h-10 px-4"
         >
           Delete

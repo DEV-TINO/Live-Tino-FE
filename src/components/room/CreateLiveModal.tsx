@@ -3,13 +3,16 @@ import { useNavigate } from "react-router-dom";
 import useBaseModal from "../../stores/baseModal";
 import useLiveRoomStore from "../../stores/liveRoomStore";
 import useUserStore from "../../stores/userStore";
+import IconXbutton from "../../icons/IconXbutton";
+import useViewerModal from "../../stores/viewerModal";
 
 const CreateLiveModal = () => {
   const navigate = useNavigate();
 
   const { closeModal } = useBaseModal();
-  const { setTitle, setMode, setRoomSetting, setLiveRoomMode, password, setPassword, setMute, mute } = useLiveRoomStore();
-  const { userId } = useUserStore();
+  const { setTitle, setMode, setRoomSetting, setLiveRoomMode, password, setPassword, setMute, createLive } = useLiveRoomStore();
+  const { userId, id } = useUserStore();
+  const { setStreamerId } = useViewerModal();
 
   const [selectedRoomSetting, setSelectedRoomSetting] = React.useState<string>("public");
 
@@ -21,7 +24,7 @@ const CreateLiveModal = () => {
     setSelectedRoomSetting(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -41,9 +44,15 @@ const CreateLiveModal = () => {
     setTitle(selectedTitle);
     setMute(muteChecked);
 
-    closeModal();
-    setLiveRoomMode("create");
-    navigate(`/live/${userId}`);
+    const response = await createLive(userId, selectedTitle, selectedRoomSetting, selectedPassword);
+    if (response) {
+      closeModal();
+      setLiveRoomMode("create");
+      navigate(`/live/${userId}`);
+      setStreamerId(id);
+    } else {
+      alert("Create Live Error Occur");
+    }
   };
 
   return (
@@ -57,21 +66,7 @@ const CreateLiveModal = () => {
               type="button"
               className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm w-8 h-8 inline-flex justify-center items-center"
             >
-              <svg
-                className="w-3 h-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                />
-              </svg>
+              <IconXbutton />
             </button>
           </div>
           <form onSubmit={handleSubmit} className="p-4">
